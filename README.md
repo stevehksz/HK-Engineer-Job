@@ -2,7 +2,7 @@
 
 香港工程師 · 考牌｜求職｜留學 —— 對外網站（GitHub Pages 入口）。
 
-- 🌐 **本站（GitHub）**：https://steveyehksz.github.io/HK-Engineer-Job/
+- 🌐 **本站（GitHub）**：https://stevehksz.github.io/HK-Engineer-Job/
 - 🌐 主站（原始伺服器）：https://stevehksz.app.workbuddy.host/
 
 ## 這是什麼
