@@ -1,0 +1,148 @@
+{
+  "name": "internet-web-expert",
+  "version": "1.0.0",
+  "description": "Full-stack internet web development expert team: UI/UX design, frontend architecture, cloud backend, WeChat mini programs, and deployment with verified release.",
+  "author": {
+    "name": "叶工",
+    "email": "hkeec2023@gmail.com"
+  },
+  "agents": [
+    "./agents/internet-web-expert-team-lead.md",
+    "./agents/web-frontend-architect.md",
+    "./agents/web-ui-ux-designer.md",
+    "./agents/web-cloud-backend-engineer.md",
+    "./agents/web-miniprogram-engineer.md"
+  ],
+  "skills": [
+    "./skills/web-cloud-service",
+    "./skills/web-miniprogram-development",
+    "./skills/web-publish-sites",
+    "./skills/web-single-file-fusion",
+    "./skills/web-release-pipeline"
+  ],
+  "expertType": "team",
+  "agentName": "internet-web-expert-team-lead",
+  "teamInfo": {
+    "leadAgent": "internet-web-expert-team-lead",
+    "memberAgents": [
+      "web-frontend-architect",
+      "web-ui-ux-designer",
+      "web-cloud-backend-engineer",
+      "web-miniprogram-engineer"
+    ]
+  },
+  "displayName": {
+    "en": "Internet Web Expert Team",
+    "zh": "互联网网页开发专家团"
+  },
+  "profession": {
+    "en": "Internet Web Expert Team",
+    "zh": "互联网网页开发专家团"
+  },
+  "displayDescription": {
+    "en": "Full-stack web development team covering UI/UX design, frontend architecture, cloud backend, WeChat mini programs, and one-click deployment with online verification.",
+    "zh": "覆盖界面设计、前端架构、云端后端、小程序与上线发布的全链路团队，需求拆解到线上核验一站交付完整应用。"
+  },
+  "avatar": "avatars/team.png",
+  "categoryId": "02-Engineering",
+  "defaultInitPrompt": {
+    "zh": "帮我做一个网站，从界面设计、前端实现、云端数据库到上线发布一条龙做完。",
+    "en": "Build me a website end to end — UI/UX design, frontend implementation, cloud database, and deployment."
+  },
+  "plugin": "internet-web-expert",
+  "tags": [
+    {
+      "en": "Web Development",
+      "zh": "网页开发"
+    },
+    {
+      "en": "Full Stack",
+      "zh": "全栈开发"
+    },
+    {
+      "en": "UI/UX Design",
+      "zh": "界面设计"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "en": "Build me a website end to end — UI/UX design, frontend implementation, cloud database, and deployment.",
+      "zh": "帮我做一个网站，从界面设计、前端实现、云端数据库到上线发布一条龙做完。"
+    },
+    {
+      "en": "Review this page's UI and accessibility, then give me a mobile-first redesign plan.",
+      "zh": "审查一下这个网页的界面和无障碍问题，给我一个移动优先的改造方案。"
+    },
+    {
+      "en": "Debug this page: clicks do nothing and it looks wrong on mobile. Find the root cause.",
+      "zh": "这个页面点击没反应，手机上显示还不对，帮我查出根因并修好。"
+    }
+  ],
+  "members": [
+    {
+      "id": "internet-web-expert-team-lead",
+      "displayName": {
+        "en": "Qi Ma",
+        "zh": "齐码"
+      },
+      "profession": {
+        "en": "Delivery Director",
+        "zh": "交付总控"
+      },
+      "avatar": "avatars/internet-web-expert-team-lead.png",
+      "role": "lead"
+    },
+    {
+      "id": "web-frontend-architect",
+      "displayName": {
+        "en": "Gao Jianyuan",
+        "zh": "高见远"
+      },
+      "profession": {
+        "en": "Frontend Architect",
+        "zh": "前端架构师"
+      },
+      "avatar": "avatars/web-frontend-architect.png",
+      "role": "member"
+    },
+    {
+      "id": "web-ui-ux-designer",
+      "displayName": {
+        "en": "Bai Tuning",
+        "zh": "白图宁"
+      },
+      "profession": {
+        "en": "UI/UX Designer",
+        "zh": "界面交互设计师"
+      },
+      "avatar": "avatars/web-ui-ux-designer.png",
+      "role": "member"
+    },
+    {
+      "id": "web-cloud-backend-engineer",
+      "displayName": {
+        "en": "Chu Yunzhou",
+        "zh": "储云舟"
+      },
+      "profession": {
+        "en": "Cloud Backend Engineer",
+        "zh": "云端后端工程师"
+      },
+      "avatar": "avatars/web-cloud-backend-engineer.png",
+      "role": "member"
+    },
+    {
+      "id": "web-miniprogram-engineer",
+      "displayName": {
+        "en": "Cheng Xiaoma",
+        "zh": "程小码"
+      },
+      "profession": {
+        "en": "Mini Program Engineer",
+        "zh": "小程序开发工程师"
+      },
+      "avatar": "avatars/web-miniprogram-engineer.png",
+      "role": "member"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+*.md text eol=lf
+*.json text eol=lf
+*.js text eol=lf
+*.wxml text eol=lf
+*.wxss text eol=lf
+*.png binary
