@@ -725,6 +725,8 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:860px}
 #icePub .lp-shopitem{border:1px solid var(--line);border-radius:11px;padding:12px;background:#fbfdff}
 #icePub .lp-shopitem b{display:block;font-size:14px;margin-bottom:4px}
 #icePub .lp-shopitem p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.55}
+#icePub .lp-shopitem p.si-clamp{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden;cursor:pointer}
+#icePub .lp-shopitem p.si-clamp.si-open{-webkit-line-clamp:unset}
 #icePub .lp-shop .lp-btn{margin-right:10px}
 #icePub .lp-shops{font-size:12.5px;color:var(--muted)}
 
@@ -3914,7 +3916,11 @@ function shopCard(it){
   else h += '<div class="si-imgph">🛍️</div>';
   if (n > 1) h += '<span class="si-n">📷 ' + n + ' 圖</span>';
   h += '<b>' + esc(it.name) + '</b>';
-  if (it.descr) h += '<p>' + esc(it.descr) + '</p>';
+  if (it.descr) {
+    /* v3.19：超長描述 4 行截斷，點擊展開/收起（避免一張卡撐高整行網格） */
+    if (it.descr.length > 90) h += '<p class="si-clamp" title="點擊展開全文" onclick="ICEPublic.shopDescToggle(this)">' + esc(it.descr) + '</p>';
+    else h += '<p>' + esc(it.descr) + '</p>';
+  }
   /* v3.6：免費知識庫——直接打開，不走收款碼/兌換碼 */
   if (it.cat === 'kbfree') {
     var fu = (it.dl && it.dl.u) || '';
@@ -4312,7 +4318,8 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, {
   shuffleQuiz, shuffleIQ, randCaseSet, randCommSet
 });
 function shopCacheGet(){ return shopItemsCache; } /* v2.8.8：給 ICEApp 讀快取用（跨 IIFE 直接引用變數會 ReferenceError） */
-window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: renderShopPane, shopBuy: shopBuy, shopClosePay: shopClosePay, shopRedeem: shopRedeem, shopAdd: shopAdd, shopDelItem: shopDelItem, shopEdit: shopEdit, shopEditCancel: shopEditCancel, shopRefresh: shopRefresh, shopImgPreview: shopImgPreview, shopCacheGet: shopCacheGet, shopPendDel: shopPendDel, shopPendAdd: shopPendAdd, shopZoom: shopZoom });
+function shopDescToggle(el){ try{ el.classList.toggle('si-open'); }catch(e){} } /* v3.19：長描述點擊展開/收起 */
+window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: renderShopPane, shopBuy: shopBuy, shopClosePay: shopClosePay, shopRedeem: shopRedeem, shopAdd: shopAdd, shopDelItem: shopDelItem, shopEdit: shopEdit, shopEditCancel: shopEditCancel, shopRefresh: shopRefresh, shopImgPreview: shopImgPreview, shopCacheGet: shopCacheGet, shopDescToggle: shopDescToggle, shopPendDel: shopPendDel, shopPendAdd: shopPendAdd, shopZoom: shopZoom });
 
   }
   window.ICEPublic = {
