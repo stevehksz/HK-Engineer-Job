@@ -3859,7 +3859,7 @@ renderChecks(); renderQuiz(); renderCases(); renderComm(); renderIQ(); bindPB();
 var __pv = /[?&]pv=1/.test(location.search);
 if (/[?&]pv=0/.test(location.search)) { try{ document.body.setAttribute('data-fl','1'); }catch(e){} }   /* v1.98：?pv=0 強制上鎖（客戶視角預覽，不改動本機解鎖狀態） */
 if (__pv) { try{ document.body.setAttribute('data-pv','1'); }catch(e){} }
-restorePath(); refreshStats(); initAI(); initGate(); setQuizRoute(store.qz || 'all'); renderAuthor();renderShop(); renderPaywalls();
+restorePath(); refreshStats(); initAI(); initGate(); setQuizRoute(store.qz || 'all'); renderAuthor();renderShop(); try{ renderShopPane(); }catch(e){} renderPaywalls();
 /* v1.94：葉工預覽模式 → 本機永久解鎖付費內容（一次性 ?pv=1，之後此設備不再上鎖）＋顯示 AI 換題管理卡 */
 if (__pv) {
   try{ store.pd='1'; store.pva='1'; lsSave(); }catch(e){}   /* v1.98：pva=管理員解鎖標記（兌換碼解鎖無此標記） */
