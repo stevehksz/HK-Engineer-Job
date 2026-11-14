@@ -1009,11 +1009,7 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
 
 <section class="pane" id="pane-shop">
   <div class="wrap">
-  <!-- v3.5：商店子頁籤（服務商品／知識庫） -->
-  <div class="cat-tabs" id="shopTabs" style="margin:4px 0 16px">
-    <button type="button" class="cat-tab on" data-jt="svc">🛍️ 服務商品</button>
-    <button type="button" class="cat-tab" data-jt="kb">📚 知識庫</button>
-  </div>
+  <!-- v3.24：商店子頁籤（服務商品／知識庫）已按葉工要求整體移除——商店只留服務商品，svc 面板默認顯示 -->
   <div class="jpane" data-jp="svc">
     <div class="lp-shop" style="margin-top:16px">
       <h2>🛒 服務商店</h2>
@@ -1050,14 +1046,7 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
       </div>
     </div>
   </div><!-- /jpane svc（v3.5） -->
-  <!-- v3.5：知識庫子面板——知識庫當商品賣，走同一套收款碼＋S碼交付 -->
-  <div class="jpane" data-jp="kb" hidden>
-    <div class="lp-shop" style="margin-top:16px">
-      <h2>📚 知識庫</h2>
-      <p class="lp-shoptip">葉工的 ima 知識庫，內容持續更新。<b>💰 付費</b>知識庫：微信掃碼付款後輸入兌換碼即自動亮出連結；<b>🆓 免費</b>知識庫：點「免費打開」直達。也可以加微信 <b>SteveHKSZ</b> 諮詢。</p>
-      <div class="lp-shopgrid" id="shopGridKb"></div>
-    </div>
-  </div><!-- /jpane kb -->
+  <!-- v3.24：知識庫子面板已按葉工要求整體移除（原 v3.5/v3.6 付費/免費知識庫區） -->
   </div>
 </section>
 <!-- 結算彈層（收款碼） -->
@@ -2241,6 +2230,40 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
   <p class="lead">一個開源、跑在你自己電腦上的求職助手：自動盯招聘站 → 關鍵詞初篩 → AI 按你的背景打分 → 每天推一份到手機。本站只做介紹，不託管代碼、不參與收費。</p>
 
   <div class="card">
+    <h2>🔥 今日熱招 · 勞工處空缺排行榜</h2>
+    <p style="font-size:13.5px;color:#4a5b6e;margin:0 0 10px;line-height:1.7">下面是<b>勞工處互動就業服務</b>的全港空缺排行榜（政府公開數據，本站每週自動同步）。排行榜覆蓋全行業，工程類崗位請用下面的「四站搜索直達」。</p>
+    <div id="radarLabourBody" style="font-size:13.5px;color:#4a5b6e;line-height:1.7">載入中…</div>
+  </div>
+
+  <div class="card">
+    <h2>🎯 四站搜索直達</h2>
+    <p style="font-size:13.5px;color:#4a5b6e;margin:0 0 10px;line-height:1.7">選崗位方向（關鍵詞可手改），一鍵到四個渠道搜<b>即時空缺</b>——搜索連結由本站生成，搜索本身在你與招聘站之間直接完成，即點即新。</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+      <select id="radarJobType" onchange="ICEPublic.radarKwFill(this.value)" style="padding:8px 10px;border:1px solid #cbd5e1;border-radius:8px;font-size:13.5px;max-width:100%;background:#fff">
+        <option value="Civil Engineer">土木工程師 · Civil Engineer</option>
+        <option value="Structural Engineer">結構工程師 · Structural Engineer</option>
+        <option value="Building Services Engineer">屋宇裝備工程師 · BS Engineer</option>
+        <option value="Project Engineer">項目工程師 · Project Engineer</option>
+        <option value="Site Engineer">地盤／駐場工程師 · Site Engineer</option>
+        <option value="Graduate Engineer">見習／畢業生工程師 · Graduate Engineer</option>
+        <option value="BIM Coordinator">BIM 工程師 · BIM Coordinator</option>
+        <option value="Safety Officer">安全主任 · Safety Officer</option>
+        <option value="QA QC Engineer">質量工程師 · QA/QC Engineer</option>
+        <option value="Environmental Engineer">環境工程師 · Environmental Engineer</option>
+        <option value="Resident Engineer">駐場工程師 · Resident Engineer</option>
+        <option value="Inspection Engineer">檢測工程師 · Inspection Engineer</option>
+      </select>
+      <input id="radarKw" value="Civil Engineer" style="flex:1;min-width:170px;padding:8px 10px;border:1px solid #cbd5e1;border-radius:8px;font-size:13.5px" aria-label="搜索關鍵詞">
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px">
+      <button type="button" class="cat-tab radar-sbtn" style="margin:0" onclick="ICEPublic.radarGo('jobsdb')">🔍 JobsDB</button>
+      <button type="button" class="cat-tab radar-sbtn" style="margin:0" onclick="ICEPublic.radarGo('linkedin')">🔍 LinkedIn</button>
+      <button type="button" class="cat-tab radar-sbtn" style="margin:0" onclick="ICEPublic.radarGo('indeed')">🔍 Indeed</button>
+      <button type="button" class="cat-tab radar-sbtn" style="margin:0" onclick="ICEPublic.radarGo('gov')">🔍 勞工處 iES</button>
+    </div>
+  </div>
+
+  <div class="card">
     <h2>它是什麼</h2>
     <ul>
       <li>盯三個招聘站：<b>JobsDB、LinkedIn、Indeed</b></li>
@@ -3135,6 +3158,54 @@ function pubDocReset(){
 }
 window.pubDocReset = pubDocReset;   /* 動態 onclick 需要（本 script 為 IIFE 包裹，頂層宣告不會自動掛到 window） */
 
+/* ---------- v3.24：崗位雷達 · 勞工處熱招（自動同步數據）＋ 四站搜索直達 ---------- */
+function radarEsc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function radarLabourFallback(box){
+  box.innerHTML = '暫時載不到排行榜數據。<a href="https://www1.jobs.gov.hk/0/tc/information/infotopten/" target="_blank" rel="noopener">去勞工處官網看 →</a>';
+}
+function radarLabourRender(){
+  var box = document.getElementById('radarLabourBody'); if (!box) return;
+  var d = window.RADAR_LABOUR;
+  if (!d || !d.byVacancies || !d.byVacancies.length){ radarLabourFallback(box); return; }
+  var th = 'style="text-align:left;padding:5px 8px;border-bottom:2px solid #d5dde5;white-space:nowrap"';
+  var td = 'style="padding:5px 8px;border-bottom:1px solid #e8edf2;white-space:nowrap"';
+  var h = '<p style="margin:0 0 8px">數據截至 <b>' + radarEsc(d.asOf) + '</b> · 來源：<a href="' + radarEsc(d.source) + '" target="_blank" rel="noopener">勞工處互動就業服務</a>（每週更新，本站自動同步）</p>';
+  h += '<div style="overflow-x:auto"><table style="border-collapse:collapse;width:100%;font-size:13px;min-width:420px">';
+  h += '<thead><tr><th ' + th + '>職位</th><th ' + th + '>現有空缺</th><th ' + th + '>較上週</th><th ' + th + '>登記求職者</th><th ' + th + '>空缺:求職</th></tr></thead><tbody>';
+  d.byVacancies.slice(0,10).forEach(function(r, i){
+    h += '<tr><td ' + td + '>' + (i+1) + '. ' + radarEsc(r.post) + '</td><td ' + td + '><b>' + r.vacancies + '</b></td><td ' + td + '>' + radarEsc(r.vacanciesWow) + '</td><td ' + td + '>' + r.seekers + '</td><td ' + td + '>' + radarEsc(r.ratio) + '</td></tr>';
+  });
+  h += '</tbody></table></div>';
+  box.innerHTML = h;
+}
+function radarLabourLoad(){
+  var box = document.getElementById('radarLabourBody'); if (!box) return;
+  if (window.RADAR_LABOUR){ radarLabourRender(); return; }
+  if (document.getElementById('radarLabourScript')) return;
+  var sc = document.createElement('script');
+  sc.id = 'radarLabourScript';
+  sc.src = 'https://stevehksz.github.io/HK-Engineer-Job/app/radar_labour.js?cb=' + Date.now();
+  sc.onerror = function(){ radarLabourFallback(box); };
+  sc.onload = function(){ if (window.RADAR_LABOUR) radarLabourRender(); else radarLabourFallback(box); };
+  document.body.appendChild(sc);
+}
+function radarKwFill(v){ var inp = document.getElementById('radarKw'); if (inp && v) inp.value = v; }
+function radarGo(site){
+  var inp = document.getElementById('radarKw');
+  var kw = (inp && inp.value ? inp.value : 'Engineer').trim() || 'Engineer';
+  var q = encodeURIComponent(kw);
+  var urls = {
+    jobsdb:   'https://hk.jobsdb.hk/j?keywords=' + q,
+    linkedin: 'https://www.linkedin.com/jobs/search/?keywords=' + q,
+    indeed:   'https://hk.indeed.com/jobs?q=' + q,
+    gov:      'https://www2.jobs.gov.hk/0/tc/jobseeker/jobsearch/'
+  };
+  var u = urls[site]; if (!u) return;
+  var w = window.open(u, '_blank', 'noopener');
+  if (w) { try { w.opener = null; } catch(e){} }
+}
+window.ICEPublic = Object.assign(window.ICEPublic || {}, { radarLabourLoad: radarLabourLoad, radarLabourRender: radarLabourRender, radarKwFill: radarKwFill, radarGo: radarGo });
+
 /* ---------- v1.73：對外「香港求職」頁籤（子分頁切換 + 文件清單進度） ---------- */
 (function(){
   var pjbar = document.getElementById('pubJobsTabs');
@@ -3143,6 +3214,7 @@ window.pubDocReset = pubDocReset;   /* 動態 onclick 需要（本 script 為 II
     pjbar.querySelectorAll('.cat-tab').forEach(function(x){ x.classList.toggle('on', x===b); });
     document.querySelectorAll('#pane-jobs .jpane').forEach(function(p){ p.hidden = p.dataset.jp !== b.dataset.jt; });
     if (b.dataset.jt === 'cases' && window.ICEPublic && typeof window.ICEPublic.refreshCases === 'function') window.ICEPublic.refreshCases();
+    if (b.dataset.jt === 'radar' && window.ICEPublic && typeof window.ICEPublic.radarLabourLoad === 'function') window.ICEPublic.radarLabourLoad();
   });
   var pjcks = document.querySelectorAll('#pane-jobs input[data-pjob]');
   var pjbarEl = document.getElementById('pubJobBar');
