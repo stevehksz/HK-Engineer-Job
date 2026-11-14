@@ -2239,7 +2239,7 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
     <h2>🎯 四站搜索直達</h2>
     <p style="font-size:13.5px;color:#4a5b6e;margin:0 0 10px;line-height:1.7">選崗位方向（關鍵詞可手改），一鍵到四個渠道搜<b>即時空缺</b>——搜索連結由本站生成，搜索本身在你與招聘站之間直接完成，即點即新。</p>
     <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
-      <select id="radarJobType" onchange="ICEPublic.radarKwFill(this.value)" style="padding:8px 10px;border:1px solid #cbd5e1;border-radius:8px;font-size:13.5px;max-width:100%;background:#fff">
+      <select id="radarJobType" onchange="ICEPublic.radarKwFill(this.value);ICEPublic.radarUpdateLinks()" style="padding:8px 10px;border:1px solid #cbd5e1;border-radius:8px;font-size:13.5px;max-width:100%;background:#fff">
         <option value="Civil Engineer">土木工程師 · Civil Engineer</option>
         <option value="Structural Engineer">結構工程師 · Structural Engineer</option>
         <option value="Building Services Engineer">屋宇裝備工程師 · BS Engineer</option>
@@ -2253,13 +2253,13 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
         <option value="Resident Engineer">駐場工程師 · Resident Engineer</option>
         <option value="Inspection Engineer">檢測工程師 · Inspection Engineer</option>
       </select>
-      <input id="radarKw" value="Civil Engineer" style="flex:1;min-width:170px;padding:8px 10px;border:1px solid #cbd5e1;border-radius:8px;font-size:13.5px" aria-label="搜索關鍵詞">
+      <input id="radarKw" value="Civil Engineer" oninput="ICEPublic.radarUpdateLinks()" style="flex:1;min-width:170px;padding:8px 10px;border:1px solid #cbd5e1;border-radius:8px;font-size:13.5px" aria-label="搜索關鍵詞">
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px">
-      <button type="button" class="cat-tab radar-sbtn" style="margin:0" onclick="ICEPublic.radarGo('jobsdb')">🔍 JobsDB</button>
-      <button type="button" class="cat-tab radar-sbtn" style="margin:0" onclick="ICEPublic.radarGo('linkedin')">🔍 LinkedIn</button>
-      <button type="button" class="cat-tab radar-sbtn" style="margin:0" onclick="ICEPublic.radarGo('indeed')">🔍 Indeed</button>
-      <button type="button" class="cat-tab radar-sbtn" style="margin:0" onclick="ICEPublic.radarGo('gov')">🔍 勞工處 iES</button>
+      <a class="cat-tab radar-sbtn" style="margin:0" data-rsite="jobsdb" href="https://hk.jobsdb.hk/j?keywords=Civil%20Engineer" target="_blank" rel="noopener">🔍 JobsDB</a>
+      <a class="cat-tab radar-sbtn" style="margin:0" data-rsite="linkedin" href="https://www.linkedin.com/jobs/search/?keywords=Civil%20Engineer" target="_blank" rel="noopener">🔍 LinkedIn</a>
+      <a class="cat-tab radar-sbtn" style="margin:0" data-rsite="indeed" href="https://hk.indeed.com/jobs?q=Civil%20Engineer" target="_blank" rel="noopener">🔍 Indeed</a>
+      <a class="cat-tab radar-sbtn" style="margin:0" data-rsite="gov" href="https://www2.jobs.gov.hk/0/tc/jobseeker/jobsearch/" target="_blank" rel="noopener">🔍 勞工處 iES</a>
     </div>
   </div>
 
@@ -3190,20 +3190,33 @@ function radarLabourLoad(){
   document.body.appendChild(sc);
 }
 function radarKwFill(v){ var inp = document.getElementById('radarKw'); if (inp && v) inp.value = v; }
-function radarGo(site){
-  var inp = document.getElementById('radarKw');
-  var kw = (inp && inp.value ? inp.value : 'Engineer').trim() || 'Engineer';
+function radarLinksFor(kw){
   var q = encodeURIComponent(kw);
-  var urls = {
+  return {
     jobsdb:   'https://hk.jobsdb.hk/j?keywords=' + q,
     linkedin: 'https://www.linkedin.com/jobs/search/?keywords=' + q,
     indeed:   'https://hk.indeed.com/jobs?q=' + q,
     gov:      'https://www2.jobs.gov.hk/0/tc/jobseeker/jobsearch/'
   };
+}
+function radarUpdateLinks(){
+  /* v3.26：改用真 <a> 鏈接——微信內置瀏覽器/部分環境會攔 window.open，按鈕點了沒反應；原生鏈接哪裡都能開 */
+  var pane = document.querySelector('#pane-jobs .jpane[data-jp="radar"]'); if (!pane) return;
+  var inp = document.getElementById('radarKw');
+  var kw = (inp && inp.value ? inp.value : 'Engineer').trim() || 'Engineer';
+  var urls = radarLinksFor(kw);
+  pane.querySelectorAll('a.radar-sbtn[data-rsite]').forEach(function(a){
+    var u = urls[a.dataset.rsite]; if (u) a.setAttribute('href', u);
+  });
+}
+function radarGo(site){
+  /* 兼容舊 onclick；新鏈接走 <a href> */
+  var urls = radarLinksFor((document.getElementById('radarKw')||{value:'Engineer'}).value.trim() || 'Engineer');
   var u = urls[site]; if (!u) return;
   var w = window.open(u, '_blank', 'noopener');
   if (w) { try { w.opener = null; } catch(e){} }
 }
+document.addEventListener('DOMContentLoaded', radarUpdateLinks);
 window.ICEPublic = Object.assign(window.ICEPublic || {}, { radarLabourLoad: radarLabourLoad, radarLabourRender: radarLabourRender, radarKwFill: radarKwFill, radarGo: radarGo });
 
 /* ---------- v1.73：對外「香港求職」頁籤（子分頁切換 + 文件清單進度） ---------- */
@@ -4663,6 +4676,8 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
     shuffleQuiz, shuffleIQ, randCaseSet, randCommSet,
     init: initICEPublic
   };
+  /* v3.24：radar 導出必須放在上面整體賦值之後——那是硬覆蓋，放在前面會被抹掉 */
+  Object.assign(window.ICEPublic, { radarLabourLoad: radarLabourLoad, radarLabourRender: radarLabourRender, radarKwFill: radarKwFill, radarUpdateLinks: radarUpdateLinks, radarLinksFor: radarLinksFor, radarGo: radarGo });
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initICEPublic);
   else initICEPublic();
 })();
