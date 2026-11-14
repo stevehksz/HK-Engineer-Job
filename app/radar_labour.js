@@ -166,5 +166,5 @@ window.RADAR_LABOUR = {
   }
  ],
  "source": "https://www1.jobs.gov.hk/0/tc/information/infotopten/",
- "generatedAt": "2026-11-14T16:06:46+08:00"
+ "generatedAt": "2026-11-14T16:26:51+08:00"
 };
