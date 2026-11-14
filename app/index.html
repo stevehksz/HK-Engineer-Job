@@ -5195,10 +5195,35 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
       closeGate();
       toast('✅ 完成登記！全部內容已為你解鎖');
     } catch (e) {
-      rgOut('⚠️ 提交失敗：' + ((e && e.message) || e) + '，請稍後重試。', 'err');
+      /* v3.22：提交失敗降級——公開版（GitHub Pages）跨域寫不了雲端，不能讓客戶卡在紅色報錯。
+         免費內容照常解鎖（登記本為留資），資料整理成可複製文本引導發微信，留資不丟。 */
+      try { localStorage.setItem('icepub_refreg', ref); } catch (_e) { /* */ }
+      closeGate();
+      toast('✅ 內容已為你解鎖。請順手把資料發給葉工跟進');
+      const _esc2 = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const _sum = '【學習檔案登記】稱呼：' + name + '｜聯絡：' + contact
+        + '｜學歷：' + (($('gt_edu') || {}).value || '')
+        + '｜年資：' + (($('gt_years') || {}).value || '')
+        + '｜目標：' + (($('gt_target') || {}).value || '');
+      window.__GATE_SUM = _sum;
+      const el2 = $('gt_out');
+      if (el2) {
+        el2.className = 'ldout err';
+        el2.style.whiteSpace = 'pre-line';
+        el2.innerHTML = '⚠️ 雲端登記暫不可用（網絡受限），內容已為你解鎖。<br>請把以下資料發給葉工微信 <b>SteveHKSZ</b> 或郵件 hkeec2023@gmail.com，方便跟進：<br><b style="user-select:all">' + _esc2(_sum) + '</b><br><button type="button" class="btn gold" onclick="ICEApp.gateFallbackCopy()" style="margin-top:8px">📋 一鍵複製資料</button>';
+      }
     } finally {
       btn.disabled = false; btn.textContent = old;
     }
+  }
+
+  /* ---------------- 學習檔案降級複製（v3.22：公開版雲端寫入失敗時引導客戶發微信） ---------------- */
+  function gateFallbackCopy() {
+    const t = window.__GATE_SUM || '';
+    if (!t) return;
+    const done = () => toast('✅ 已複製，貼到微信發給葉工即可');
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done).catch(() => window.prompt('全選複製：', t));
+    else window.prompt('全選複製：', t);
   }
 
   /* ---------------- 主頁留資（葉工 Landing 表單 → leads 表） ---------------- */
@@ -6009,7 +6034,7 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
     openPreview, exitPublicPreview,
     uploadLocal: () => uploadLocalSnap(false),
     cloudDirty, submitLead, renderLeads, leadConvert, leadMark,
-    gateSubmit, refGen, refCopy, refDel, renderRefs, saveAuthorCfg, fillAuthorForm, fetchAuthorCfg, landingLead, cvLead, renderCvLeads, cvKeysGen, cvKeysUI, cvOpen, cvFileDl, cvDecryptBundle, trackVisit, trackShare, getStats, redeemCode, rcGen, rcGenShop, rcCopy, rcReset, rcDel, renderRcList, shopCloudList, shopCloudUpsert, shopCloudDel, getSiteConfig, putSiteConfig, isSignedIn: () => signedIn,
+    gateSubmit, gateFallbackCopy, refGen, refCopy, refDel, renderRefs, saveAuthorCfg, fillAuthorForm, fetchAuthorCfg, landingLead, cvLead, renderCvLeads, cvKeysGen, cvKeysUI, cvOpen, cvFileDl, cvDecryptBundle, trackVisit, trackShare, getStats, redeemCode, rcGen, rcGenShop, rcCopy, rcReset, rcDel, renderRcList, shopCloudList, shopCloudUpsert, shopCloudDel, getSiteConfig, putSiteConfig, isSignedIn: () => signedIn,
     saveCasesCfg, caseAdd, caseEdit, caseCancelEdit, caseDel, caseMove, caseImgPick, caseLoadCloud, renderCaseAdmin
   };
 
