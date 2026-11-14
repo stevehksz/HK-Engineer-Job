@@ -3034,7 +3034,7 @@ const CONFIG = {
     email: '',           // 例：'you@example.com'
     note: ''             // 例：'提供一對一考牌路徑評估與報告診斷'
   },
-  shareBase: 'https://stevehksz.app.workbuddy.host',  // 推廣連結一律以此域名生成（本地打開平台時也指向線上站）；日後換白牌域名改這一行即可
+  shareBase: 'https://stevehksz.github.io/HK-Engineer-Job/app',  /* v3.21：對外分享一律指向 GitHub 公開版——主站域名在微信內置瀏覽器被網關 403（2026-11-12 實測），推廣連結發出去客戶打不開。refLink／shareSite 均讀此值 */
   author: {              // 作者信息與知識庫（可在平台「線上留資」頁線上編輯並發佈，訪客自動讀取雲端配置）
     name: '',            // 例：'Steve 黃師傅'
     title: '',           // 例：'CEng MICE · 一級建造師'
@@ -4028,7 +4028,9 @@ async function landingSubmit(){
 
 /* ---------- 分享與統計（v1.52） ---------- */
 async function shareSite(){
-  var url = location.protocol === 'file:' ? 'https://stevehksz.app.workbuddy.host/' : (location.origin + location.pathname);
+  /* v3.21：對外分享固定用公開版域名（主站域名微信內 403 打不開）；ICE_SHARE_BASE 可被白牌域名覆蓋 */
+  var base = (window.ICE_SHARE_BASE || 'https://stevehksz.github.io/HK-Engineer-Job/app').replace(/\/+$/, '');
+  var url = base + '/';
   var app = window.ICEApp;
   if (navigator.share) {
     try { await navigator.share({ title: '葉工 · 香港工程師 考牌·求職·留學', url: url }); if (app && app.trackShare) app.trackShare(); return; }
@@ -5835,7 +5837,7 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
   const REF_KEY = 'icepub_refs';
   function refsLoad() { try { const a = JSON.parse(localStorage.getItem(REF_KEY) || '[]'); return Array.isArray(a) ? a : []; } catch (e) { return []; } }
   function refsSave(a) { try { localStorage.setItem(REF_KEY, JSON.stringify(a)); } catch (e) { /* */ } }
-  const LIVE_BASE = 'https://stevehksz.app.workbuddy.host';
+  const LIVE_BASE = 'https://stevehksz.github.io/HK-Engineer-Job/app';   /* v3.21：兜底也走公開版（微信可開） */
   function refLink(code) {
     // 優先級：白牌外殼域名（ICE_SHARE_BASE）> 線上站點 > 當前頁面地址。
     // 本地打開平台（file: 或 localhost）時生成器也必須輸出線上連結，否則訪客打不開。
