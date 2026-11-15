@@ -2228,7 +2228,7 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
   <!-- 子分頁：建造詞彙表（v3.28，數據 glossary_hk.json 懶加載，5020 條 A–Z + 95 條主題俗稱） -->
   <div class="jpane" data-jp="glossary" hidden>
   <h1>📖 香港建造工程詞彙表</h1>
-  <p class="lead">5000+ 條英中對照（A–Z）＋ 95 條主題分類詞彙（含<b>香港地盤俗稱</b>）。支援中英文／俗稱混合搜索。來源：HK Construction Glossary v1（2026-09-10）。</p>
+  <p class="lead">5000+ 條英中對照（A–Z）＋ 95 條主題分類詞彙（含<b>香港地盤俗稱</b>）。支援中英文／俗稱混合搜索；每條帶美式音標，點 🔊 可朗讀（瀏覽器不支援則不顯示）。來源：HK Construction Glossary v1（2026-09-10）。</p>
   <div class="card">
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
       <button type="button" class="cat-tab on" id="glModeAz" style="margin:0">🔤 A–Z 字母表</button>
@@ -2236,7 +2236,7 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
     </div>
     <input id="glSearch" type="search" placeholder="搜索：英文 / 中文 / 地盤俗稱（例如 D-Wall、批盪、safety、探土）" style="width:100%;padding:10px 12px;border:1px solid #cbd5e1;border-radius:10px;font-size:14px" aria-label="詞彙搜索">
     <div id="glLetterBar" style="display:flex;gap:4px;flex-wrap:wrap;margin:10px 0 0"></div>
-    <div id="glThemeBar" hidden style="display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0"></div>
+    <div id="glThemeBar" style="display:none;gap:6px;flex-wrap:wrap;margin:10px 0 0"></div>
     <div id="glStatus" style="font-size:12.5px;color:#7a8797;margin:10px 0 0">資料尚未載入——首次打開約 240KB，請稍候。</div>
     <div id="glResults" style="margin-top:6px"></div>
   </div>
@@ -4736,7 +4736,7 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
       'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(function(c){
         h += '<button type="button" class="cat-tab' + (GL.mode === 'az' && GL.letter === c ? ' on' : '') + '" data-gll="' + c + '" style="margin:0;padding:4px 9px;font-size:12px;min-width:30px">' + c + '</button>';
       });
-      lb.innerHTML = h; lb.hidden = GL.mode !== 'az';
+      lb.innerHTML = h; lb.style.display = GL.mode === 'az' ? 'flex' : 'none';
     }
     /* 主題欄（主題模式） */
     if (tb) {
@@ -4744,7 +4744,7 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
       GL.data.part2.forEach(function(t){
         h2 += '<button type="button" class="cat-tab' + (GL.mode === 'theme' && GL.theme === t.no ? ' on' : '') + '" data-glt="' + t.no + '" style="margin:0;padding:4px 10px;font-size:12px">' + escH(t.no + '. ' + t.zh) + '</button>';
       });
-      tb.innerHTML = h2; tb.hidden = GL.mode !== 'theme';
+      tb.innerHTML = h2; tb.style.display = GL.mode === 'theme' ? 'flex' : 'none';
     }
     /* 過濾 */
     var kw = GL.kw.toLowerCase();
@@ -4757,10 +4757,13 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
     var st = glEl('glStatus'), box = glEl('glResults');
     if (st) st.textContent = list.length ? ('共 ' + list.length + ' 條符合' + (list.length > GL.CAP ? '，顯示首 ' + GL.CAP + ' 條（請加關鍵字收窄）' : '')) : '沒有符合的詞條——試試更短的關鍵字。';
     if (!box) return;
+    var canSpeak = typeof window.speechSynthesis !== 'undefined' && typeof window.SpeechSynthesisUtterance !== 'undefined';
     var html = '';
-    list.slice(0, GL.CAP).forEach(function(e){
+    list.slice(0, GL.CAP).forEach(function(e, idx){
       html += '<div style="padding:8px 2px;border-bottom:1px solid #eef2f5;font-size:14px;line-height:1.55">'
         + '<b style="color:#1a5c46">' + escH(e.en) + '</b>'
+        + (e.ipa ? ' <span style="color:#64748b;font-size:12.5px">/' + escH(e.ipa) + '/</span>' : '')
+        + (canSpeak ? ' <button type="button" class="cat-tab gl-speak" data-say="' + escH(e.en) + '" aria-label="朗讀" style="margin:0 4px 0 0;padding:1px 7px;font-size:12px;vertical-align:middle">🔊</button>' : '')
         + '<span style="color:#94a3b8;margin:0 6px">—</span>' + escH(e.zh)
         + (e.slang ? ' <span style="display:inline-block;margin-left:8px;padding:1px 8px;border-radius:99px;background:#fef3c7;color:#92400e;font-size:12px">地盤俗稱：' + escH(e.slang) + '</span>' : '')
         + (e.theme ? ' <span style="color:#94a3b8;font-size:12px">· ' + escH(e.theme) + '</span>' : '')
@@ -4768,7 +4771,23 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
     });
     box.innerHTML = html;
   }
+  function glSpeak(t){
+    try {
+      window.speechSynthesis.cancel();
+      var u = new window.SpeechSynthesisUtterance(t);
+      u.lang = 'en-GB'; u.rate = 0.95;
+      var vs = window.speechSynthesis.getVoices() || [];
+      for (var i = 0; i < vs.length; i++) { if (/en[-_]GB/i.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      if (!u.voice) { for (var j = 0; j < vs.length; j++) { if (/^en/i.test(vs[j].lang)) { u.voice = vs[j]; break; } } }
+      window.speechSynthesis.speak(u);
+    } catch (err) { /* 朗讀不可用就靜默 */ }
+  }
   function glInitEvents(){
+    var rb = glEl('glResults');
+    if (rb) rb.addEventListener('click', function(e){
+      var b = e.target.closest('.gl-speak'); if (!b) return;
+      glSpeak(b.dataset.say || '');
+    });
     var az = glEl('glModeAz'), th = glEl('glModeTheme'), sb = glEl('glSearch');
     if (az) az.addEventListener('click', function(){ GL.mode = 'az'; az.classList.add('on'); if (th) th.classList.remove('on'); glRender(); });
     if (th) th.addEventListener('click', function(){ GL.mode = 'theme'; th.classList.add('on'); if (az) az.classList.remove('on'); glRender(); });
@@ -4781,7 +4800,14 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
     var tbb = glEl('glThemeBar');
     if (tbb) tbb.addEventListener('click', function(e){
       var b = e.target.closest('button'); if (!b) return;
-      GL.theme = parseInt(b.dataset.glt || '0', 10) || 0; glRender();
+      GL.theme = parseInt(b.dataset.glt || '0', 10) || 0;
+      /* v3.29：A–Z 模式下點主題 → 自動切主題模式（否則篩選不生效） */
+      if (GL.mode !== 'theme') {
+        GL.mode = 'theme';
+        if (th) th.classList.add('on');
+        if (az) az.classList.remove('on');
+      }
+      glRender();
     });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', glInitEvents);
