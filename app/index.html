@@ -3079,7 +3079,7 @@ const CONFIG = {
     email: '',           // 例：'you@example.com'
     note: ''             // 例：'提供一對一考牌路徑評估與報告診斷'
   },
-  shareBase: 'https://stevehksz.github.io/HK-Engineer-Job/app',  /* v3.21：對外分享一律指向 GitHub 公開版——主站域名在微信內置瀏覽器被網關 403（2026-11-12 實測），推廣連結發出去客戶打不開。refLink／shareSite 均讀此值 */
+  shareBase: 'https://stevehksz.github.io/HK-Engineer-Job',  /* v3.21：對外分享一律指向 GitHub 公開版——主站域名在微信內置瀏覽器被網關 403（2026-11-12 實測），推廣連結發出去客戶打不開。refLink／shareSite 均讀此值 */
   author: {              // 作者信息與知識庫（可在平台「線上留資」頁線上編輯並發佈，訪客自動讀取雲端配置）
     name: '',            // 例：'Steve 黃師傅'
     title: '',           // 例：'CEng MICE · 一級建造師'
@@ -3206,7 +3206,7 @@ function radarLabourLoad(){
   if (document.getElementById('radarLabourScript')) return;
   var sc = document.createElement('script');
   sc.id = 'radarLabourScript';
-  sc.src = 'https://stevehksz.github.io/HK-Engineer-Job/app/radar_labour.js?cb=' + Date.now();
+  sc.src = 'https://stevehksz.github.io/HK-Engineer-Job/radar_labour.js?cb=' + Date.now();
   sc.onerror = function(){ radarLabourFallback(box); };
   sc.onload = function(){ if (window.RADAR_LABOUR) radarLabourRender(); else radarLabourFallback(box); };
   document.body.appendChild(sc);
@@ -4137,7 +4137,7 @@ async function landingSubmit(){
 /* ---------- 分享與統計（v1.52） ---------- */
 async function shareSite(){
   /* v3.21：對外分享固定用公開版域名（主站域名微信內 403 打不開）；ICE_SHARE_BASE 可被白牌域名覆蓋 */
-  var base = (window.ICE_SHARE_BASE || 'https://stevehksz.github.io/HK-Engineer-Job/app').replace(/\/+$/, '');
+  var base = (window.ICE_SHARE_BASE || 'https://stevehksz.github.io/HK-Engineer-Job').replace(/\/+$/, '');
   var url = base + '/';
   var app = window.ICEApp;
   if (navigator.share) {
@@ -4704,7 +4704,7 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
   /* v3.28：glossary 導出同樣必須在主賦值之後 */
   Object.assign(window.ICEPublic, { glossaryLoad: glossaryLoad, glRender: glRender });
   /* ---------- v3.28：建造詞彙表（懶加載 glossary_hk.json · A–Z + 主題地盤俗稱） ---------- */
-  var GL_JSON = ((typeof CONFIG !== 'undefined' && CONFIG.shareBase) ? CONFIG.shareBase : 'https://stevehksz.github.io/HK-Engineer-Job/app') + '/glossary_hk.json';
+  var GL_JSON = ((typeof CONFIG !== 'undefined' && CONFIG.shareBase) ? CONFIG.shareBase : 'https://stevehksz.github.io/HK-Engineer-Job') + '/glossary_hk.json';
   var GL = { data: null, loading: false, mode: 'az', letter: '', kw: '', theme: 0, CAP: 120 };
   function glEl(id){ return document.getElementById(id); }
   function escH(v){ return String(v == null ? '' : v).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
@@ -6089,7 +6089,7 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
   const REF_KEY = 'icepub_refs';
   function refsLoad() { try { const a = JSON.parse(localStorage.getItem(REF_KEY) || '[]'); return Array.isArray(a) ? a : []; } catch (e) { return []; } }
   function refsSave(a) { try { localStorage.setItem(REF_KEY, JSON.stringify(a)); } catch (e) { /* */ } }
-  const LIVE_BASE = 'https://stevehksz.github.io/HK-Engineer-Job/app';   /* v3.21：兜底也走公開版（微信可開） */
+  const LIVE_BASE = 'https://stevehksz.github.io/HK-Engineer-Job';   /* v3.21：兜底也走公開版（微信可開） */
   function refLink(code) {
     // 優先級：白牌外殼域名（ICE_SHARE_BASE）> 線上站點 > 當前頁面地址。
     // 本地打開平台（file: 或 localhost）時生成器也必須輸出線上連結，否則訪客打不開。
