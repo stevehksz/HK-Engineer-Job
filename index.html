@@ -5606,11 +5606,14 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
   /* ---------------- 站點統計（site_stats 表：打開/轉發，公開讀寫計數） ---------------- */
   function renderStats(st, pv) {
     const el = $('homeStats'); if (!el) return;
-    if (!st || !/[?&]pv=1/.test(location.search)) { el.style.display = 'none'; return; }   // v1.60：統計徽章僅葉工預覽（?pv=1）可見，客戶端一律隱藏
+    if (!/[?&]pv=1/.test(location.search)) { el.style.display = 'none'; return; }   // v1.60：統計徽章僅葉工預覽（?pv=1）可見，客戶端一律隱藏
+    /* v3.34：github.io 上 getStats 跨域必失敗（網關 403），此時 st 為 null，
+       舊寫法會把整個徽章藏掉、連第三方計數也看不到 —— 拆開判斷 */
+    const hasPv = !!(pv && typeof pv.visitors === 'number');
+    if (!st && !hasPv) { el.style.display = 'none'; return; }
     el.style.display = '';
-    let t = '👀 已有 ' + (st.visits || 0) + ' 人打開 · 🔗 ' + (st.shares || 0) + ' 次轉發分享';
-    /* v3.34：github.io 公開版走第三方計數（雲端 site_stats 對跨域 Origin 403，計不到） */
-    if (pv && typeof pv.visitors === 'number') t += ' · 🖥 github.io ' + pv.visitors + ' 次';
+    let t = st ? ('👀 已有 ' + (st.visits || 0) + ' 人打開 · 🔗 ' + (st.shares || 0) + ' 次轉發分享') : '';
+    if (hasPv) t += (t ? ' · ' : '') + '🖥 github.io ' + pv.visitors + ' 次';
     el.textContent = t;
   }
   async function getStats() {
