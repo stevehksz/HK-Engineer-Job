@@ -5604,10 +5604,14 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
   }
 
   /* ---------------- 站點統計（site_stats 表：打開/轉發，公開讀寫計數） ---------------- */
-  function renderStats(st) {
+  function renderStats(st, pv) {
     const el = $('homeStats'); if (!el) return;
     if (!st || !/[?&]pv=1/.test(location.search)) { el.style.display = 'none'; return; }   // v1.60：統計徽章僅葉工預覽（?pv=1）可見，客戶端一律隱藏
-    el.style.display = ''; el.textContent = '👀 已有 ' + (st.visits || 0) + ' 人打開 · 🔗 ' + (st.shares || 0) + ' 次轉發分享';
+    el.style.display = '';
+    let t = '👀 已有 ' + (st.visits || 0) + ' 人打開 · 🔗 ' + (st.shares || 0) + ' 次轉發分享';
+    /* v3.34：github.io 公開版走第三方計數（雲端 site_stats 對跨域 Origin 403，計不到） */
+    if (pv && typeof pv.visitors === 'number') t += ' · 🖥 github.io ' + pv.visitors + ' 次';
+    el.textContent = t;
   }
   async function getStats() {
     /* v2.8.3：同源 REST 優先（硬規則 1）——SDK 未載入也能讀統計（葉工儀表板「雲端未連接」修復） */
@@ -5657,8 +5661,43 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
       else { const { error: ie } = await cloud.database.from('site_stats').insert({ id: id, count: 1 }); if (ie) throw ie; }
     } catch (e) { console.warn('[cloud] stat ' + id + ' 寫入失敗（可忽略）', e); }
   }
+  /* ---------------- 對外公開版獨立計數（v3.34，2026-11-18）
+     背景：雲端 site_stats 的讀寫都走 stevehksz.app.workbuddy.host 的 REST，瀏覽器從
+     github.io 發過去必帶 Origin 頭，網關對非白名單 Origin 一律 403 access_denied
+     （2026-11-18 實測：同源 Origin 200／github.io Origin 403）。所以微信裡那批訪客
+     一個都沒計進 site_stats——351 只是主站與預覽的數。
+     方案：訪客側用 hits.sh 的 SVG 打點（img 標籤不需要 CORS），數字由 pv_sync.py
+     抓回、寫成 stats_pageview.json 放倉庫根（GitHub Pages 帶 ACAO *，主站也讀得到）。
+     ⚠️ 只在 github.io 域名打點——主站後台自己刷新不計，避免虛增。
+     ⚠️ hits.sh 沒有只讀接口，抓一次就 +1；pv_sync.py 把抓取次數記在 fetched 裡，
+     頁面顯示 hits - fetched = visitors。 */
+  const PV_COUNTER = 'https://hits.sh/github.com/stevehksz/HK-Engineer-Job.svg?style=flat-square';
+  const PV_JSON = 'https://stevehksz.github.io/HK-Engineer-Job/stats_pageview.json';
+  function pvBeacon() {
+    try {
+      if (location.hostname.indexOf('github.io') === -1) return;      /* 只計對外公開版 */
+      if (sessionStorage.getItem('pv_beacon_done')) return;           /* 一次會話計一次 */
+      sessionStorage.setItem('pv_beacon_done', '1');
+      var im = new Image();
+      im.referrerPolicy = 'no-referrer';
+      im.src = PV_COUNTER + '&cb=' + Date.now();                      /* 命中即 +1 */
+    } catch (e) { /* 靜默：計數失敗不影響任何功能 */ }
+  }
+  async function getPvStats() {
+    try {
+      const r = await fetch(PV_JSON + '?cb=' + Date.now(), { cache: 'no-store' });
+      if (!r.ok) return null;
+      const j = await r.json();
+      if (j && typeof j.hits === 'number') {
+        j.visitors = Math.max(0, j.hits - (j.fetched || 0));          /* 扣掉腳本抓取造成的 +1 */
+      }
+      return j;
+    } catch (e) { return null; }
+  }
   async function trackVisit() {
-    try { if (sessionStorage.getItem('icepub_visit_done')) { renderStats(await getStats()); return; } sessionStorage.setItem('icepub_visit_done', '1'); } catch (e) { /* */ }
+    pvBeacon();                                                       /* v3.34：先打點（僅 github.io 生效） */
+    const pv = await getPvStats();                                    /* v3.34：第三方計數，主站也能讀 */
+    try { if (sessionStorage.getItem('icepub_visit_done')) { renderStats(await getStats(), pv); return; } sessionStorage.setItem('icepub_visit_done', '1'); } catch (e) { /* */ }
     await bumpStat('visits');
     try {
       // 經推薦連結（?ref=）到訪 = 轉發傳播的證明，每次會話計一次轉發
@@ -5667,11 +5706,11 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
         await bumpStat('shares');
       }
     } catch (e) { /* */ }
-    renderStats(await getStats());
+    renderStats(await getStats(), pv);
   }
   async function trackShare() {
     await bumpStat('shares');
-    renderStats(await getStats());
+    renderStats(await getStats(), await getPvStats());
     try { toast('🎉 感謝分享！已記錄'); } catch (e) { /* */ }
   }
 
@@ -6318,7 +6357,7 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
     openPreview, exitPublicPreview,
     uploadLocal: () => uploadLocalSnap(false),
     cloudDirty, submitLead, renderLeads, leadConvert, leadMark,
-    gateSubmit, gateFallbackCopy, refGen, refCopy, refDel, renderRefs, saveAuthorCfg, fillAuthorForm, fetchAuthorCfg, payQuickLoad, payQuickSave, landingLead, cvLead, renderCvLeads, cvKeysGen, cvKeysUI, cvOpen, cvFileDl, cvDecryptBundle, trackVisit, trackShare, getStats, redeemCode, rcGen, rcGenShop, rcCopy, rcReset, rcDel, renderRcList, shopCloudList, shopCloudUpsert, shopCloudDel, getSiteConfig, putSiteConfig, isSignedIn: () => signedIn,
+    gateSubmit, gateFallbackCopy, refGen, refCopy, refDel, renderRefs, saveAuthorCfg, fillAuthorForm, fetchAuthorCfg, payQuickLoad, payQuickSave, landingLead, cvLead, renderCvLeads, cvKeysGen, cvKeysUI, cvOpen, cvFileDl, cvDecryptBundle, trackVisit, trackShare, getStats, redeemCode, rcGen, rcGenShop, rcCopy, rcReset, rcDel, renderRcList, shopCloudList, shopCloudUpsert, shopCloudDel, getSiteConfig, putSiteConfig, getPvStats, isSignedIn: () => signedIn,
     saveCasesCfg, caseAdd, caseEdit, caseCancelEdit, caseDel, caseMove, caseImgPick, caseLoadCloud, renderCaseAdmin
   };
 
