@@ -1,7 +1,7 @@
 {
  "hits": 2,
- "fetched": 1,
- "visitors": 1,
+ "fetched": 2,
+ "visitors": 0,
  "since": "2026-11-18",
  "asOf": "2026-11-18 23:16 HKT",
  "counter": "https://hits.sh/github.com/stevehksz/HK-Engineer-Job.svg?style=flat-square",
@@ -9,7 +9,7 @@
  "history": [
   {
    "date": "2026-11-18",
-   "visitors": 1
+   "visitors": 0
   }
  ]
 }
