@@ -1,9 +1,9 @@
 {
- "hits": 21,
- "fetched": 6,
- "visitors": 15,
+ "hits": 39,
+ "fetched": 7,
+ "visitors": 32,
  "since": "2026-11-18",
- "asOf": "2026-11-20 07:35 HKT",
+ "asOf": "2026-11-21 18:59 HKT",
  "counter": "https://hits.sh/github.com/stevehksz/HK-Engineer-Job.svg?style=flat-square",
  "note": "visitors = hits - fetched（hits.sh 每抓一次就 +1，fetched 记录抓取次数）；只统计 github.io 公开版，主站见云端 site_stats。",
  "history": [
@@ -18,6 +18,10 @@
   {
    "date": "2026-11-20",
    "visitors": 15
+  },
+  {
+   "date": "2026-11-21",
+   "visitors": 32
   }
  ]
 }
