@@ -707,6 +707,16 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:860px}
 #icePub .paywall .pw-redeem button{padding:10px 16px;border:0;border-radius:9px;background:linear-gradient(135deg,#B8860B,#d4a017);color:#fff;font-weight:700;font-size:14px;cursor:pointer}
 #icePub .paywall #pwOut{font-size:13px;margin-top:10px;min-height:18px;color:#8a6d1a}
 #icePub .paywall .pw-note{font-size:12px;color:#999;margin-top:10px}
+.pw-sample{max-width:360px;margin:14px auto 4px;background:#fffdf5;border:1px solid #e3d9bd;border-radius:12px;padding:10px 12px 8px;box-shadow:0 2px 12px rgba(112,48,160,.10)}
+.ps-tag{font-size:11px;font-weight:700;color:#8a6d1a;text-align:center;margin-bottom:6px}
+.ps-doc{background:#fff;border:1px solid #eee;border-radius:6px;padding:10px 12px 8px;font-family:'Times New Roman',serif}
+.ps-name{font-size:15px;font-weight:700;color:#7030A0;letter-spacing:1.5px}
+.ps-contact{font-size:10.5px;color:#7030A0;margin:2px 0 2px}
+.ps-sec{font-size:11px;font-weight:700;font-style:italic;color:#7030A0;letter-spacing:2px;border-bottom:1.5px solid #7030A0;padding-bottom:2px;margin:9px 0 5px}
+.ps-job{font-size:10.5px;font-weight:700;font-style:italic;color:#333}
+.ps-role{font-size:10px;font-style:italic;text-decoration:underline;color:#444;margin-bottom:3px}
+.ps-ln{height:6px;border-radius:3px;background:#e7e2f1;margin:5px 0}
+.ps-cap{font-size:11px;color:#8a6d1a;text-align:center;margin-top:7px}
 #icePub /* --- 服務商店（v1.8） --- */
 .lp-shop{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:14px 0}
 #icePub .si-card img.si-img{width:100%;height:150px;object-fit:contain;background:#f7fafd;border:1px solid #eef2f7;border-radius:9px;margin:0 0 8px;display:block;cursor:zoom-in}
@@ -4372,6 +4382,14 @@ function paywallHTML(prod){
   h+='<div class="pw-price">'+price+'</div>';
   h+='<p class="pw-label">'+label+'</p>';
   if(isRg){ h+='<p class="pw-note" style="text-align:left;display:block;margin-top:6px">解鎖後你會得到：🧩 工料測量師 / 工程師 RE·ASE / 安全主任 / 項目經理 NEC4 四類崗位的<b>完整 CV 結構範本</b>（每區塊含範例句）＋<b>ATS 關鍵詞庫</b>（獵頭與系統按這些詞搜你）＋<b>通用修改檢查清單</b>（12 項逐項核對、可列印）。照著改，改完就是可投遞版本。</p>'; }
+  if(isRg){ /* v3.37：成品範本迷你預覽（姓名打碼），付款前眼見為實 */ h+='<div class="pw-sample"><div class="ps-tag">📄 成品效果預覽 · 姓名已隱藏</div><div class="ps-doc">'
+    +'<div class="ps-name">[ YOUR NAME ]</div>'
+    +'<div class="ps-contact">Tel: +852 XXXX XXXX&nbsp;&nbsp;&nbsp;Email: your.name@gmail.com</div>'
+    +'<div class="ps-sec">KEY SUMMARY</div><div class="ps-ln" style="width:96%"></div><div class="ps-ln" style="width:88%"></div><div class="ps-ln" style="width:72%"></div>'
+    +'<div class="ps-sec">EDUCATION</div><div class="ps-job">The Hong Kong University of Science and Technology</div><div class="ps-ln" style="width:58%"></div>'
+    +'<div class="ps-sec">PROFESSIONAL EXPERIENCE</div><div class="ps-job">Construction Co. (Hong Kong) | 2024 - Present</div><div class="ps-role">Structural Engineer (Temporary Works)</div><div class="ps-ln" style="width:94%"></div><div class="ps-ln" style="width:84%"></div><div class="ps-ln" style="width:66%"></div>'
+    +'<div class="ps-sec">ADDITIONAL INFORMATION</div><div class="ps-ln" style="width:78%"></div><div class="ps-ln" style="width:62%"></div>'
+    +'</div><div class="ps-cap">▲ 範本實際排版（Times New Roman 專業版式 · 4 類崗位各一份 · 直接套改就投）</div></div>'; }
   if(qr) h+='<img src="'+qr+'" alt="微信收款二維碼">';
   h+='<p class="pw-cap">微信掃碼添加葉工（SteveHKSZ）付款 · 付款後索取'+(isRg?' R 開頭':'')+'兌換碼</p>';
   h+='<ol class="pw-steps">';
