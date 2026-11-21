@@ -929,6 +929,7 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
     <div class="tab" data-tab="shop">🛒 服務商店</div>
     <div class="tab" data-tab="lic">🎓 考牌認證</div>
     <div class="tab" data-tab="jobs">💼 香港求職</div>
+          <div class="tab" data-tab="rg">📄 簡歷工坊</div>
     <div class="tab" data-tab="trans">🏫 香港插班</div>
       <div class="tab" data-tab="ai" id="aiTab" style="display:none">🤖 AI 問答助手</div>
   </div>
@@ -2533,6 +2534,187 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
   <p class="note" style="margin-top:14px"><a onclick="ICEPublic.go('shop')" style="cursor:pointer">🛒 服務商店</a></p>
   </div><!-- /jpane cvcheck -->
 </section><!-- /pane-jobs -->
+
+<section class="pane" id="pane-rg">
+  <div class="section-head">
+    <h3>📄 英文簡歷優化工作坊</h3>
+    <p>針對香港工程及建造業職位的 CV 結構範本 · 關鍵詞庫 · 逐項修改檢查清單（可列印）</p>
+  </div>
+  <p class="note" style="margin-bottom:10px"><a onclick="ICEPublic.go('jobs')" style="cursor:pointer">← 返回香港求職</a></p>
+  <!-- v3.36：內容取自對內簡歷工坊靜態部分（AI 提示詞庫／一鍵生成編輯器不對外） -->
+<div class="tpl-tabs" id="pubTplTabs">
+    <button class="tpl-tab on" data-tpl="qs"><div class="tt-role">工料測量師</div><div class="tt-en">QUANTITY SURVEYOR</div></button>
+    <button class="tpl-tab" data-tpl="eng"><div class="tt-role">工程師</div><div class="tt-en">ENGINEER / RE / ASE</div></button>
+    <button class="tpl-tab" data-tpl="safety"><div class="tt-role">安全主任 / 協調員</div><div class="tt-en">SAFETY OFFICER / COORDINATOR</div></button>
+    <button class="tpl-tab" data-tpl="pm"><div class="tt-role">項目管理 / 經理</div><div class="tt-en">PM / CM / NEC4 PM</div></button>
+  </div>
+
+  <!-- QS 範本 -->
+  <div class="tpl-pane on" data-tp="qs">
+    <div class="two-col">
+      <div class="card card-pad">
+        <h3 class="card-title">🏗 CV 結構範本：Quantity Surveyor</h3>
+        <div class="card-desc">香港建造業 QS 崗位（顧問公司 / 發展商 / 承建商 T1–T2）通用結構</div>
+        <div style="margin-top:16px">
+          <div class="resume-block"><h4>個人資料區</h4><div class="rb-en">Header</div>
+            <ul><li>Name · Phone · Email · LinkedIn</li><li>現居地區及可到職日（Availability）</li><li>預期薪金（Expected Salary）可留空待議</li></ul></div>
+          <div class="resume-block"><h4>個人簡介</h4><div class="rb-en">Professional Summary</div>
+            <ul><li>3–4 行：年資 + 認可學歷 + 核心專長（造價控制 / 合同管理）+ 代表性項目規模</li><li>範例句："MRICS-trained QS with 6 years' experience delivering pre- and post-contract services on HK$2B+ infrastructure projects under NEC4 and SSF contracts."</li></ul></div>
+          <div class="resume-block"><h4>核心技能（寫進 KEY SUMMARY 與工作要點，不單列一節）</h4><div class="rb-en">Core Skills — fold into KEY SUMMARY / experience bullets</div>
+            <ul><li>分類羅列：造價（Estimating / Cost Planning）、合同（NEC4 ECC / FIDIC / SSF）、工具（Cubicost / Vico / BIM 5D / CostX）、其他（Value Engineering、Claim Analysis）</li></ul></div>
+          <div class="resume-block"><h4>工作經驗</h4><div class="rb-en">Professional Experience（逆時間序）</div>
+            <ul><li>每段經驗 3–5 個 bullet，動詞開頭 + 量化成果</li><li>範例："Administered post-contract services for a HK$1.8B rail extension, processing 120+ variation claims with 95% first-pass approval."</li><li>標明合約模式（NEC4 ECC Option C / SSF 1999）及 BQ 角色</li></ul></div>
+          <div class="resume-block"><h4>項目經驗</h4><div class="rb-en">Key Projects（3–5 個）</div>
+            <ul><li>格式：項目名稱 · 客戶/業主 · 合約額 · 工期 · 個人職責</li></ul></div>
+          <div class="resume-block"><h4>學歷及專業資格</h4><div class="rb-en">Education &amp; Qualifications</div>
+            <ul><li>學位 · 院校 · 年份；專業進修（NEC4 課程、BIM 證書）</li><li>會員資格 / 考牌進度（如 HKIE / RICS 學生成員）</li></ul></div>
+          <div class="resume-block"><h4>其他</h4><div class="rb-en">Languages &amp; Others</div>
+            <ul><li>語言：Cantonese (Native) · Mandarin (Fluent) · English (Professional)</li><li>香港慣例：可註明 HKID 持有狀況 / 工作簽證需求</li></ul></div>
+        </div>
+        <div style="margin-top:8px">
+          <b style="font-size:13px">🔑 ATS 關鍵詞庫：</b><span class="kw-chip">Quantity Surveying</span><span class="kw-chip">Cost Estimation</span><span class="kw-chip">BQ Preparation</span><span class="kw-chip">Tender Documentation</span><span class="kw-chip">NEC4 ECC</span><span class="kw-chip">FIDIC</span><span class="kw-chip">SSF Contract</span><span class="kw-chip">Interim Valuation</span><span class="kw-chip">Variation / Claims</span><span class="kw-chip">Final Account</span><span class="kw-chip">CostX</span><span class="kw-chip">BIM 5D / QTO</span><span class="kw-chip">Value Engineering</span><span class="kw-chip">Contract Administration</span>
+        </div>
+      </div>
+      <div class="card card-pad">
+        <h3 class="card-title">✏️ QS 簡歷修改要點</h3>
+        <ul style="list-style:none;margin-top:10px">
+          <li style="padding:5px 0;font-size:13.2px">▸ <b>合約經驗前置</b>：香港僱主最看重 NEC4 / SSF / FIDIC 實操經驗，放最前的 bullet。</li>
+          <li style="padding:5px 0;font-size:13.2px">▸ <b>金額量化</b>：每個項目必須出現合約額（HK$ xxx M/B），這是 QS 的「通用語言」。</li>
+          <li style="padding:5px 0;font-size:13.2px">▸ <b>結算成功率</b>：結算及索償數據（審批率、爭議解決金額）是最有力的成果證明。</li>
+          <li style="padding:5px 0;font-size:13.2px">▸ <b>軟件堆疊</b>：CostX / Cubicost / Vico 分行列出，ATS 及獵頭均按關鍵詞搜索。</li>
+          <li style="padding:5px 0;font-size:13.2px">▸ <b>避免空話</b>：刪除 "responsible for"、改用 Managed / Delivered / Reduced 等動詞開頭。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 工程師範本 -->
+  <div class="tpl-pane" data-tp="eng">
+    <div class="two-col">
+      <div class="card card-pad">
+        <h3 class="card-title">🦺 CV 結構範本：Engineer / RE / ASE（土木 · 屋宇 · 機電）</h3>
+        <div class="card-desc">適用於工程顧問（Consultant）、承建商（Contractor）及政府相關崗位</div>
+        <div style="margin-top:16px">
+          <div class="resume-block"><h4>個人簡介</h4><div class="rb-en">Professional Summary</div>
+            <ul><li>範例句："Civil Engineer (BEng, List A) with 5 years' site and design experience on public housing and rail projects; proficient in ER supervision regimes and IRR submissions."</li></ul></div>
+          <div class="resume-block"><h4>核心技能（寫進 KEY SUMMARY 與工作要點，不單列一節）</h4><div class="rb-en">Core Skills — fold into KEY SUMMARY / experience bullets</div>
+            <ul><li>設計：AutoCAD / Civil 3D / Revit / ETABS / SAP2000（按界別）</li><li>工地：Method Statement 編審、SOR 驗收、品質與安全管理（NCR / RFI 處理）</li><li>程序：進度計劃（Primavera P6）、IRR、法定提交（如 BD / DSD 要求）</li></ul></div>
+          <div class="resume-block"><h4>工作經驗</h4><div class="rb-en">Professional Experience</div>
+            <ul><li>範例："Supervised piling and site formation works (HK$450M school development), leading weekly progress meetings with AP/RSE consultants and zero fatal injury over 700,000 man-hours."</li><li>顧問崗位：突出設計計算、審圖、項目協調；承建商崗位：突出施工方案、分判管理、成本意識</li></ul></div>
+          <div class="resume-block"><h4>項目經驗</h4><div class="rb-en">Key Projects</div>
+            <ul><li>公共項目標明業主（ArchSD / HD / DSD / MTR / CEDD）；私營項目標明發展商</li><li>寫明本人具體職責，避免整隊功勞攬上身（面試會追問）</li></ul></div>
+          <div class="resume-block"><h4>學歷及專業資格</h4><div class="rb-en">Education &amp; Qualifications</div>
+            <ul><li>學位（List A 認可直接標註 "HKIE-accredited programme"）</li><li>HKIE Graduate Member 身份及考牌進度；安全訓練證明（綠卡）</li></ul></div>
+        </div>
+        <div style="margin-top:8px">
+          <b style="font-size:13px">🔑 ATS 關鍵詞庫：</b><span class="kw-chip">Site Supervision</span><span class="kw-chip">Method Statement</span><span class="kw-chip">Pile Foundation</span><span class="kw-chip">Site Formation</span><span class="kw-chip">E&amp;M Coordination</span><span class="kw-chip">IRR Submission</span><span class="kw-chip">NCR / RFI</span><span class="kw-chip">Primavera P6</span><span class="kw-chip">Revit / BIM</span><span class="kw-chip">Contractual Programme</span><span class="kw-chip">AP / RSE / RGE Liaison</span><span class="kw-chip">Quality Assurance</span>
+        </div>
+      </div>
+      <div class="card card-pad">
+        <h3 class="card-title">✏️ 工程師簡歷修改要點</h3>
+        <ul style="list-style:none;margin-top:10px">
+          <li style="padding:5px 0;font-size:13.2px">▸ <b>安全紀錄是香港工地語言</b>：零意外工時（man-hours without LTI）是僱主必看指標。</li>
+          <li style="padding:5px 0;font-size:13.2px">▸ <b>法定角色配合</b>：有 AP / RSE / RGE 協調經驗必須寫明，顧問公司搜索高頻詞。</li>
+          <li style="padding:5px 0;font-size:13.2px">▸ <b>政府項目經驗加分</b>：標明業主部門（ArchSD / HD / CEDD / MTR），私營項目標明發展商。</li>
+          <li style="padding:5px 0;font-size:13.2px">▸ <b>考牌進度</b>：寫明 HKIE Graduate Member 及 PA 準備進度，讓僱主看到晉升軌道。</li>
+          <li style="padding:5px 0;font-size:13.2px">▸ <b>技術與管理並重</b>：3 年以上經驗要顯示帶團隊（Led a team of X）及對上匯報線。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 安全範本 -->
+  <div class="tpl-pane" data-tp="safety">
+    <div class="two-col">
+      <div class="card card-pad">
+        <h3 class="card-title">🛡 CV 範本：Safety Officer / 安全協調員（Site Safety Officer / Co-ordinator）</h3>
+        <div class="card-desc">適用於註冊安全主任（RSO）、安全督導員、安全協調員崗位</div>
+        <div style="margin-top:16px">
+          <div class="resume-block"><h4>個人簡介</h4><div class="rb-en">Professional Summary</div>
+            <ul><li>範例句："Registered Safety Officer (Labour Department) with 8 years' construction safety experience across public works and demolition projects; delivered 40% reduction in accident frequency rate."</li></ul></div>
+          <div class="resume-block"><h4>核心技能與註冊資格（能力寫進 SUMMARY；資格單列 PROFESSIONAL QUALIFICATION）</h4><div class="rb-en">Core Skills &amp; Registration</div>
+            <ul><li>註冊安全主任（RSO）編號 / 綠卡（建造業安全訓練證明）</li><li>STWO 及安全審核（STAT）提交經驗、CSSR 例行監察</li><li>Risk Assessment / JSA 編制、安全巡查及培訓（Toolbox Talk）</li></ul></div>
+          <div class="resume-block"><h4>工作經驗</h4><div class="rb-en">Professional Experience</div>
+            <ul><li>範例："Formulated and implemented project safety plans for a HK$2.6B hospital redevelopment, achieving an LTIR 30% below industry average."</li><li>量化方向：意外率變化、培訓人次、巡查次數、違規整改率</li></ul></div>
+          <div class="resume-block"><h4>學歷及專業進修</h4><div class="rb-en">Education &amp; Training</div>
+            <ul><li>安全相關文憑 / 學位；持續進修證書（職安健課程、急救）</li></ul></div>
+        </div>
+        <div style="margin-top:8px">
+          <b style="font-size:13px">🔑 ATS 關鍵詞庫：</b><span class="kw-chip">Registered Safety Officer</span><span class="kw-chip">STWO</span><span class="kw-chip">STAT</span><span class="kw-chip">Risk Assessment</span><span class="kw-chip">JSA</span><span class="kw-chip">CSSR Monitoring</span><span class="kw-chip">Toolbox Talk</span><span class="kw-chip">Safety Audit</span><span class="kw-chip">LTIR / Accident Rate</span><span class="kw-chip">Site Inspection</span><span class="kw-chip">Green Card</span><span class="kw-chip">Emergency Preparedness</span>
+        </div>
+      </div>
+      <div class="card card-pad">
+        <h3 class="card-title">✏️ 安全崗位修改要點</h3>
+        <ul style="list-style:none;margin-top:10px">
+          <li style="padding:5px 0;font-size:13.2px">▸ <b>註冊資格放最前</b>：RSO 註冊是硬門檻，放在 Summary 第一行。</li>
+          <li style="padding:5px 0;font-size:13.2px">▸ <b>數據說話</b>：LTIR、意外率降幅、安全培訓人次，是安全績效的鐵證。</li>
+          <li style="padding:5px 0;font-size:13.2px">▸ <b>法例術語準確</b>：F&amp;IU / 工廠及工業經營條例、職安健條例引用要精確。</li>
+          <li style="padding:5px 0;font-size:13.2px">▸ <b>協調角色</b>：安全協調員要突出與承建商管理層、分包及法團的溝通機制建設。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PM 範本 -->
+  <div class="tpl-pane" data-tp="pm">
+    <div class="two-col">
+      <div class="card card-pad">
+        <h3 class="card-title">📋 CV 範本：Project Manager / Contract Manager（NEC4 PM）</h3>
+        <div class="card-desc">適用資深工程師轉管理崗、NEC4 ECC 項目經理、合同經理</div>
+        <div style="margin-top:16px">
+          <div class="resume-block"><h4>個人簡介</h4><div class="rb-en">Executive Summary</div>
+            <ul><li>範例句："NEC4:ECC-accredited Project Manager (CEng, MCIHT) with 12 years delivering HK$5B+ transport infrastructure; led multidisciplinary teams of 30+ across client and contractor organisations."</li></ul></div>
+          <div class="resume-block"><h4>管理核心能力</h4><div class="rb-en">Leadership Competencies</div>
+            <ul><li>合同管理：NEC4 ECC（Option A–F）、Early Warning / Compensation Event 程序主導</li><li>商務：成本控制、索償策略、風險登記冊管理</li><li>干係人：政府部門、公用事業公司、社區持份者協調</li></ul></div>
+          <div class="resume-block"><h4>工作經驗</h4><div class="rb-en">Career History</div>
+            <ul><li>範例："Acted as NEC4 ECC Project Manager for a HK$1.2B road widening scheme, closing 100% of compensation events within contractual timescales."</li><li>資深崗位每段經驗 4–6 bullets，突出 P&amp;L 責任、團隊規模、合約額</li></ul></div>
+          <div class="resume-block"><h4>專業資歷</h4><div class="rb-en">Professional Memberships</div>
+            <ul><li>CEng · MCIHT · MIMMM · MHKIE · NEC4:ECC Project Manager 認證（按實際持有列出）</li></ul></div>
+        </div>
+        <div style="margin-top:8px">
+          <b style="font-size:13px">🔑 ATS 關鍵詞庫：</b><span class="kw-chip">NEC4 ECC</span><span class="kw-chip">Compensation Event</span><span class="kw-chip">Early Warning</span><span class="kw-chip">Programme Management</span><span class="kw-chip">Cost Control</span><span class="kw-chip">Claims Strategy</span><span class="kw-chip">Stakeholder Management</span><span class="kw-chip">Risk Register</span><span class="kw-chip">P6</span><span class="kw-chip">Multidisciplinary Teams</span><span class="kw-chip">Client Representation</span>
+        </div>
+      </div>
+      <div class="card card-pad">
+        <h3 class="card-title">✏️ 管理崗修改要點</h3>
+        <ul style="list-style:none;margin-top:10px">
+          <li style="padding:5px 0;font-size:13.2px">▸ <b>資歷字母後置於名字</b>：CEng / MCIHT 放在姓名之後，是資深管理崗的慣例。</li>
+          <li style="padding:5px 0;font-size:13.2px">▸ <b>合約金額 + 團隊規模</b>：每段經驗至少出現一次，界定管理層級。</li>
+          <li style="padding:5px 0;font-size:13.2px">▸ <b>NEC4 程序語言</b>：Early Warning、Compensation Event、Programme 主導權等術語直接對接崗位 JD。</li>
+          <li style="padding:5px 0;font-size:13.2px">▸ <b>成果導向</b>：以「按時 / 按預算交付率」收尾每段經驗。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-pad" style="margin-top:20px">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+      <div>
+        <h3 class="card-title">✅ 通用 CV 修改檢查清單</h3>
+        <div class="card-desc">每次為客戶改 CV 前後逐項核對</div>
+      </div>
+      <button class="btn btn-sm" onclick="window.print()">🖨 列印本頁</button>
+    </div>
+    <div class="check-prog"><div class="cf" id="rgProgBar" style="width:0%"></div></div>
+    <div class="check-list" id="rgCheckList">
+      <label><input type="checkbox" data-rck><span>長度：1 頁（5 年內經驗）或 2 頁（資深），絕不超過 2 頁</span></label>
+      <label><input type="checkbox" data-rck><span>所有 bullet 以強動詞開頭（Led / Delivered / Managed / Reduced / Streamlined）</span></label>
+      <label><input type="checkbox" data-rck><span>每項經驗含至少一個量化成果（金額 / % / 人數 / 規模）</span></label>
+      <label><input type="checkbox" data-rck><span>針對目標 JD 定制關鍵詞，覆蓋 ATS 搜索（對照上方關鍵詞庫）</span></label>
+      <label><input type="checkbox" data-rck><span>香港慣例欄位齊全：Availability、Expected Salary、語言能力、簽證/居民狀態</span></label>
+      <label><input type="checkbox" data-rck><span>證照區塊：綠卡、安全訓練、專業會員資格及考牌進度</span></label>
+      <label><input type="checkbox" data-rck><span>格式統一：時序一致（MM/YYYY）、標點全形半形不混用、字距行距統一</span></label>
+      <label><input type="checkbox" data-rck><span>零錯字零語病（工程行業對細節極敏感，逐句朗讀複查）</span></label>
+      <label><input type="checkbox" data-rck><span>聯絡資料完整且專業（避免暱稱電郵如 cute_abc@…）</span></label>
+      <label><input type="checkbox" data-rck><span>項目案例 3–5 個，標明合約額與個人實際職責</span></label>
+      <label><input type="checkbox" data-rck><span>刪除無關個人資料（婚姻、宗教、與崗位無關愛好）</span></label>
+      <label><input type="checkbox" data-rck><span>輸出 PDF 檔名規範：Name_Position_CV.pdf</span></label>
+    </div>
+    <button class="btn btn-sm" style="margin-top:8px" onclick="ICEPublic.rgCkReset()">重置清單</button>
+  </div>
+
+</section><!-- /pane-rg -->
+
 
 <!-- v3.7：香港插班主目錄——一頁紙介紹＋跳轉網站（素材來自葉工插班擇校站 hk-placement 知識庫） -->
 <section class="pane" id="pane-trans">
@@ -4173,42 +4355,56 @@ function payPrice(){
   return (CONFIG.pay&&CONFIG.pay.price)||'¥299';
 }
 function isPaid(){ try{ return store.pd==='1'; }catch(e){ return false; } }
+function isPaidRg(){ try{ return store.prg==='1'; }catch(e){ return false; } }
+function rgPrice(){ try{ var c=window.ICE_AUTHOR_CFG||{}; if(c.rgPrice){ var p=String(c.rgPrice).trim(); return /¥|\$/.test(p)?p:('¥'+p); } }catch(e){} return '¥50'; }
 function deviceToken(){
   try{ var k='icepub_devid', v=localStorage.getItem(k);
     if(!v){ v='d'+Math.random().toString(36).slice(2,12)+Date.now().toString(36); localStorage.setItem(k,v); }
     return v; }catch(e){ return 'anon'; }
 }
-function paywallHTML(){
+function paywallHTML(prod){
+  var isRg = prod==='rg';
   var qr=(CONFIG.pay&&CONFIG.pay.qr)||''; if(!qr){ try{ var im=document.querySelector('#pane-home .lp-qrbox img'); if(im&&im.src) qr=im.src; }catch(e){} }
-  var label=(CONFIG.pay&&CONFIG.pay.label)||'模擬試題 + 面試指導 終身解鎖';
+  var label=isRg?'簡歷工坊 · 4 類職位範本 + 關鍵詞庫 + 檢查清單 終身解鎖':((CONFIG.pay&&CONFIG.pay.label)||'模擬試題 + 面試指導 終身解鎖');
+  var price=isRg?rgPrice():payPrice();
   var h='';
-  h+='<div class="pw-ic">🔒</div>';
-  h+='<div class="pw-price">'+payPrice()+'</div>';
+  h+='<div class="pw-ic">'+(isRg?'📄':'🔒')+'</div>';
+  h+='<div class="pw-price">'+price+'</div>';
   h+='<p class="pw-label">'+label+'</p>';
+  if(isRg){ h+='<p class="pw-note" style="text-align:left;display:block;margin-top:6px">解鎖後你會得到：🧩 工料測量師 / 工程師 RE·ASE / 安全主任 / 項目經理 NEC4 四類崗位的<b>完整 CV 結構範本</b>（每區塊含範例句）＋<b>ATS 關鍵詞庫</b>（獵頭與系統按這些詞搜你）＋<b>通用修改檢查清單</b>（12 項逐項核對、可列印）。照著改，改完就是可投遞版本。</p>'; }
   if(qr) h+='<img src="'+qr+'" alt="微信收款二維碼">';
-  h+='<p class="pw-cap">微信掃碼添加葉工（SteveHKSZ）付款 · 付款後索取兌換碼</p>';
+  h+='<p class="pw-cap">微信掃碼添加葉工（SteveHKSZ）付款 · 付款後索取'+(isRg?' R 開頭':'')+'兌換碼</p>';
   h+='<ol class="pw-steps">';
   h+='<li>① 微信掃碼添加葉工，按上方價格付款</li>';
-  h+='<li>② 向葉工索取 8 位兌換碼</li>';
+  h+='<li>② 向葉工索取 8 位'+(isRg?'（R 開頭）':'')+'兌換碼</li>';
   h+='<li>③ 在下方輸入兌換碼 → 立即自動解鎖</li>';
   h+='</ol>';
-  h+='<div class="pw-redeem"><input id="pwCode" maxlength="12" placeholder="輸入兌換碼" autocomplete="off"><button id="pwRedeem" type="button">解鎖</button></div>';
-  h+='<div id="pwOut"></div>';
-  h+='<p class="pw-note">一碼綁定一台設備 · 換設備打不開請聯繫葉工重置 · 付款前可先看「三大關卡」免費內容</p>';
+  h+='<div class="pw-redeem"><input id="'+(isRg?'rgpwCode':'pwCode')+'" maxlength="12" placeholder="'+(isRg?'輸入 R 開頭兌換碼':'輸入兌換碼')+'" autocomplete="off"><button id="'+(isRg?'rgpwRedeem':'pwRedeem')+'" type="button">解鎖</button></div>';
+  h+='<div id="'+(isRg?'rgpwOut':'pwOut')+'"></div>';
+  h+='<p class="pw-note">一碼綁定一台設備 · 換設備打不開請聯繫葉工重置'+(isRg?'':' · 付款前可先看「三大關卡」免費內容')+'</p>';
   return h;
 }
 function renderPaywalls(){
   var __fl = document.body.getAttribute('data-fl')==='1';   /* v1.98：?pv=0 強制客戶視角（本機有解鎖也上鎖，僅本頁籤有效） */
-  if(document.body.getAttribute('data-pv')==='1' && !__fl){ ['pane-quiz','pane-interview'].forEach(function(pid){ var p=document.getElementById(pid); if(p){ p.classList.remove('pwlock'); var w=p.querySelector('.paywall'); if(w) w.remove(); } }); return; }   // 葉工預覽（?pv=1）：付費內容直接可見
-  ['pane-quiz','pane-interview'].forEach(function(pid){
-    var pane=document.getElementById(pid); if(!pane) return;
+  if(document.body.getAttribute('data-pv')==='1' && !__fl){ ['pane-quiz','pane-interview','pane-rg'].forEach(function(pid){ var p=document.getElementById(pid); if(p){ p.classList.remove('pwlock'); var w=p.querySelector('.paywall'); if(w) w.remove(); } }); return; }
+  // 葉工預覽（?pv=1）：付費內容直接可見
+  // v3.36：三個付費面板、兩個商品位——quiz/interview ← store.pd；rg ← store.prg
+  [['pane-quiz', isPaid(), 'quiz'], ['pane-interview', isPaid(), 'quiz'], ['pane-rg', isPaidRg(), 'rg']].forEach(function(it){
+    var pane=document.getElementById(it[0]);
+    if(!pane) return;
     var pw=pane.querySelector('.paywall');
-    if(isPaid() && !__fl){ if(pw) pw.remove(); pane.classList.remove('pwlock'); }
-    else {
-      if(!pw){ var d=document.createElement('div'); d.className='paywall'; d.innerHTML=paywallHTML(); pane.insertBefore(d,pane.firstChild);
-        var b=d.querySelector('#pwRedeem'), i=d.querySelector('#pwCode');
-        if(b) b.addEventListener('click', function(){ redeemSubmit(); });
-        if(i) i.addEventListener('keydown', function(e){ if(e.key==='Enter') redeemSubmit(); });
+    if(it[1] && !__fl){
+      if(pw) pw.remove();
+      pane.classList.remove('pwlock');
+    } else {
+      if(!pw){
+        var d=document.createElement('div');
+        d.className='paywall';
+        d.innerHTML=paywallHTML(it[2]);
+        pane.insertBefore(d,pane.firstChild);
+        var b=d.querySelector(it[2]==='rg'?'#rgpwRedeem':'#pwRedeem'), i=d.querySelector(it[2]==='rg'?'#rgpwCode':'#pwCode');
+        if(b) b.addEventListener('click', function(){ it[2]==='rg' ? rgRedeemSubmit() : redeemSubmit(); });
+        if(i) i.addEventListener('keydown', function(e){ if(e.key==='Enter'){ it[2]==='rg' ? rgRedeemSubmit() : redeemSubmit(); } });
       }
       pane.classList.add('pwlock');
     }
@@ -4221,6 +4417,7 @@ async function redeemSubmit(){
   if(code.length<4){ if(out) out.textContent='⚠️ 請輸入完整兌換碼'; return; }
   /* v3.4：S 開頭是商店交付碼，去商品「購買」彈窗用 */
   if(/^S/.test(code)){ if(out) out.textContent='⚠️ 這是商店交付碼（S 開頭），請到對應商品的「購買」彈窗輸入'; return; }
+  /* v3.36：R 開頭是簡歷工坊兌換碼，去「簡歷工坊」頁籤用 */ if(/^R/.test(code)){ if(out) out.textContent='⚠️ 這是簡歷工坊兌換碼（R 開頭），請到「簡歷工坊」頁籤輸入'; return; }
   var app=window.ICEApp;
   if(!app||!app.redeemCode){ if(out) out.textContent='⚠️ 兌換需要聯網驗證，請檢查網絡後重試'; return; }
   if(out) out.textContent='驗證中…';
@@ -4236,8 +4433,37 @@ function applyPaid(){
   store.pd='1'; lsSave(); renderPaywalls();
   try{ if(typeof toast==='function') toast('🎉 已解鎖！模擬試題與面試指導全部開放'); }catch(e){}
 }
+function applyPaidRg(){
+  store.prg='1'; lsSave(); renderPaywalls();
+  try{ if(typeof toast==='function') toast('🎉 已解鎖！簡歷工坊範本與檢查清單全部開放'); }catch(e){}
+}
+async function rgRedeemSubmit(){
+  var inp=document.getElementById('rgpwCode');
+  if(!inp) return;
+  var code=(inp.value||'').trim().toUpperCase();
+  var out=document.getElementById('rgpwOut');
+  if(!/^R[A-Z0-9]{7}$/.test(code)){ if(out) out.textContent='⚠️ 簡歷工坊兌換碼為 R 開頭 8 位（例：R3K7M2X9），請向葉工索取'; return; }
+  var app=window.ICEApp;
+  if(!app||!app.redeemCode){ if(out) out.textContent='⚠️ 兌換需要聯網驗證，請檢查網絡後重試'; return; }
+  if(out) out.textContent='驗證中…';
+  var r=await app.redeemCode(code);
+  if(r&&r.ok){ applyPaidRg(); return; }
+  if(out){
+    if(r&&r.reason==='used') out.textContent='❌ 此兌換碼已被其他設備使用；換設備請聯繫葉工重置（SteveHKSZ）';
+    else if(r&&r.reason==='notfound') out.textContent='❌ 兌換碼無效，請核對後重試';
+    else out.textContent='⚠️ 驗證失敗：'+((r&&r.error)||'請稍後重試');
+  }
+}
 
-  function initICEPublic(){
+  /* ---------- v3.36：公開版簡歷工坊（pane-rg · 範本頁籤 + 檢查清單） ---------- */
+var RG_CK_KEY='icepub_rg_ck';
+function rgTab(key){ var tabs=document.getElementById('pubTplTabs'); if(tabs) tabs.querySelectorAll('.tpl-tab').forEach(function(t){ t.classList.toggle('on', t.getAttribute('data-tpl')===key); }); document.querySelectorAll('#pane-rg .tpl-pane[data-tp]').forEach(function(p){ p.classList.toggle('on', p.getAttribute('data-tp')===key); }); }
+function rgCkUpd(){ var boxes=document.querySelectorAll('#pane-rg input[data-rck]'); var vals=[]; boxes.forEach(function(b){ vals.push(b.checked); }); try{ localStorage.setItem(RG_CK_KEY, JSON.stringify(vals)); }catch(e){} var bar=document.getElementById('rgProgBar'); if(bar && boxes.length){ var done=vals.filter(Boolean).length; bar.style.width=(done/boxes.length*100)+'%'; } }
+function rgCkRestore(){ var boxes=document.querySelectorAll('#pane-rg input[data-rck]'); if(!boxes.length) return; var saved=[]; try{ saved=JSON.parse(localStorage.getItem(RG_CK_KEY)||'[]'); }catch(e){} boxes.forEach(function(b,i){ if(saved[i]) b.checked=true; }); boxes.forEach(function(b){ b.addEventListener('change', rgCkUpd); }); rgCkUpd(); }
+function rgCkReset(){ document.querySelectorAll('#pane-rg input[data-rck]').forEach(function(b){ b.checked=false; }); try{ localStorage.removeItem(RG_CK_KEY); }catch(e){} rgCkUpd(); }
+function rgBind(){ var bar=document.getElementById('pubTplTabs'); if(bar && !bar.dataset.rgBound){ bar.dataset.rgBound='1'; bar.addEventListener('click', function(e){ var b=e.target.closest ? e.target.closest('.tpl-tab') : null; if(b) rgTab(b.getAttribute('data-tpl')); }); } rgCkRestore(); }
+
+function initICEPublic(){
 
 lsLoad();
 iceLoadCustom();   /* v1.94/1.95：先套用本機自訂題庫（若有），再渲染 */
@@ -4247,7 +4473,7 @@ renderChecks(); renderQuiz(); renderCases(); renderComm(); renderIQ(); bindPB();
 var __pv = /[?&]pv=1/.test(location.search);
 if (/[?&]pv=0/.test(location.search)) { try{ document.body.setAttribute('data-fl','1'); }catch(e){} }   /* v1.98：?pv=0 強制上鎖（客戶視角預覽，不改動本機解鎖狀態） */
 if (__pv) { try{ document.body.setAttribute('data-pv','1'); }catch(e){} }
-restorePath(); refreshStats(); initAI(); initGate(); setQuizRoute(store.qz || 'all'); renderAuthor();renderShop(); try{ var __rp=renderShopPane(); if(__rp&&__rp.catch) __rp.catch(function(){}); }catch(e){} renderPaywalls();
+restorePath(); refreshStats(); initAI(); initGate(); setQuizRoute(store.qz || 'all'); renderAuthor();renderShop(); try{ var __rp=renderShopPane(); if(__rp&&__rp.catch) __rp.catch(function(){}); }catch(e){} try{ rgBind(); }catch(e){} renderPaywalls();
 /* v1.94：葉工預覽模式 → 本機永久解鎖付費內容（一次性 ?pv=1，之後此設備不再上鎖）＋顯示 AI 換題管理卡 */
 if (__pv) {
   try{ store.pd='1'; store.pva='1'; lsSave(); }catch(e){}   /* v1.98：pva=管理員解鎖標記（兌換碼解鎖無此標記） */
@@ -4719,6 +4945,8 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
   Object.assign(window.ICEPublic, { radarLabourLoad: radarLabourLoad, radarLabourRender: radarLabourRender, radarKwFill: radarKwFill, radarUpdateLinks: radarUpdateLinks, radarLinksFor: radarLinksFor, radarGo: radarGo });
   /* v3.28：glossary 導出同樣必須在主賦值之後 */
   Object.assign(window.ICEPublic, { glossaryLoad: glossaryLoad, glRender: glRender });
+/* v3.36：簡歷工坊公開版導出（rgTab / 檢查清單重置 / 付費牆重渲染） */
+Object.assign(window.ICEPublic, { rgTab: rgTab, rgCkReset: rgCkReset, rgPrice: rgPrice, isPaidRg: isPaidRg, renderPaywalls: renderPaywalls });
   /* ---------- v3.28：建造詞彙表（懶加載 glossary_hk.json · A–Z + 主題地盤俗稱） ---------- */
   var GL_JSON = ((typeof CONFIG !== 'undefined' && CONFIG.shareBase) ? CONFIG.shareBase : 'https://stevehksz.github.io/HK-Engineer-Job') + '/glossary_hk.json';
   var GL = { data: null, loading: false, mode: 'az', letter: '', kw: '', theme: 0, CAP: 120 };
@@ -5909,6 +6137,13 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
     } catch (e) { /* */ }
     return '¥299';
   }
+  function pqRgNowPrice() {
+    try {
+      const c = window.ICE_AUTHOR_CFG || {};
+      if (c.rgPrice) { const p = String(c.rgPrice).trim(); return /¥|\$/.test(p) ? p : ('¥' + p); }
+    } catch (e) { /* */ }
+    return '¥50';
+  }
   async function payQuickLoad() {
     try {
       const el = $('pqNow'); if (!el) return;
@@ -5916,6 +6151,9 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
       const r = await readSiteConfig('author');
       const ip = $('pqPrice');
       if (r.ok && r.data && typeof r.data === 'object' && r.data.payPrice && ip && !ip.value) ip.value = String(r.data.payPrice);
+      const rgEl = $('pqRgNow'); if (rgEl) rgEl.textContent = pqRgNowPrice();
+      const rgIp = $('pqRgPrice');
+      if (r.ok && r.data && typeof r.data === 'object' && r.data.rgPrice && rgIp && !rgIp.value) rgIp.value = String(r.data.rgPrice);
       el.textContent = pqNowPrice();
     } catch (e) { const el = $('pqNow'); if (el) el.textContent = pqNowPrice(); }
   }
@@ -5930,6 +6168,7 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
     if (typeof val === 'string') { try { val = JSON.parse(val); } catch (e) { val = {}; } }
     if (!val || typeof val !== 'object') val = {};
     val.payPrice = p;                                   /* 只改價格，其餘欄位原樣保留 */
+    const rgIp = $('pqRgPrice'); const rgv = rgIp ? rgIp.value.trim() : ''; if (rgv) val.rgPrice = rgv;   /* v3.36：簡歷工坊價格（留空不改） */
     const w = await putSiteConfig('author', val);
     if (!w.ok) { out.textContent = '⚠️ 發佈失敗：' + (w.error || ''); out.style.color = '#b00020'; return; }
     window.ICE_AUTHOR_CFG = val;
@@ -5937,7 +6176,7 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
       if (window.ICEPublic && typeof window.ICEPublic.renderPaywalls === 'function') window.ICEPublic.renderPaywalls();
       if (window.ICEPublic && typeof window.ICEPublic.renderAuthor === 'function') window.ICEPublic.renderAuthor();
     } catch (e) { /* */ }
-    const now = $('pqNow'); if (now) now.textContent = pqNowPrice();
+    const now = $('pqNow'); if (now) now.textContent = pqNowPrice(); const rgNow = $('pqRgNow'); if (rgNow) rgNow.textContent = pqRgNowPrice();
     const au = $('au_price'); if (au) au.value = p;      /* 作者卡欄位同步顯示 */
     out.textContent = '✅ 已發佈：' + pqNowPrice() + '（主站即時生效；github.io 公開版等下次自動同步）'; out.style.color = '#1a7a3a';
   }
@@ -6298,6 +6537,8 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
       toast('🛒 商店交付碼已生成，點「複製」發給已付款客戶');
     } catch (e) { if (out) out.textContent = '⚠️ 生成失敗：' + ((e && e.message) || e); }
   }
+  async function rcGenRg() { /* v3.36：簡歷工坊兌換碼——R 開頭，對外版「簡歷工坊」頁籤輸入解鎖 ¥50 板塊 */ const out = $('rcOut'); if (!signedIn || !cloud) { if (out) out.textContent = '⚠️ 請先登入雲端帳號再生成兌換碼，正在跳轉登入…'; if (cloud && !isLocal()) setTimeout(function () { setView('auth'); }, 900); return; } const noteEl = $('rcNote'), cntEl = $('rcCount'); const note = '簡歷工坊' + (noteEl && noteEl.value.trim() ? ' · ' + noteEl.value.trim() : ''); let n = cntEl ? parseInt(cntEl.value, 10) : 1; if (!n || n < 1) n = 1; if (n > 50) n = 50; try { const rows = []; for (let i = 0; i < n; i++) rows.push({ code: 'R' + rcMake().slice(0, 7), note: note }); const { error } = await cloud.database.from('redeem_codes').insert(rows); if (error) throw error; if (out) out.textContent = '✅ 已生成 ' + n + ' 個簡歷工坊兌換碼（R 開頭）'; if (noteEl) noteEl.value = ''; await renderRcList(); toast('🎟️ 簡歷工坊兌換碼已生成，點「複製」發給已付款客戶'); } catch (e) { if (out) out.textContent = '⚠️ 生成失敗：' + ((e && e.message) || e); } }
+
   async function renderRcList() {
     const box = $('rcList'); if (!box) return;
     if (!signedIn || !cloud) { box.innerHTML = ''; return; }
@@ -6360,7 +6601,7 @@ window.ICEPublic = Object.assign(window.ICEPublic || {}, { renderShopPane: rende
     openPreview, exitPublicPreview,
     uploadLocal: () => uploadLocalSnap(false),
     cloudDirty, submitLead, renderLeads, leadConvert, leadMark,
-    gateSubmit, gateFallbackCopy, refGen, refCopy, refDel, renderRefs, saveAuthorCfg, fillAuthorForm, fetchAuthorCfg, payQuickLoad, payQuickSave, landingLead, cvLead, renderCvLeads, cvKeysGen, cvKeysUI, cvOpen, cvFileDl, cvDecryptBundle, trackVisit, trackShare, getStats, redeemCode, rcGen, rcGenShop, rcCopy, rcReset, rcDel, renderRcList, shopCloudList, shopCloudUpsert, shopCloudDel, getSiteConfig, putSiteConfig, getPvStats, isSignedIn: () => signedIn,
+    gateSubmit, gateFallbackCopy, refGen, refCopy, refDel, renderRefs, saveAuthorCfg, fillAuthorForm, fetchAuthorCfg, payQuickLoad, payQuickSave, landingLead, cvLead, renderCvLeads, cvKeysGen, cvKeysUI, cvOpen, cvFileDl, cvDecryptBundle, trackVisit, trackShare, getStats, redeemCode, rcGen, rcGenShop, rcGenRg, rcCopy, rcReset, rcDel, renderRcList, shopCloudList, shopCloudUpsert, shopCloudDel, getSiteConfig, putSiteConfig, getPvStats, isSignedIn: () => signedIn,
     saveCasesCfg, caseAdd, caseEdit, caseCancelEdit, caseDel, caseMove, caseImgPick, caseLoadCloud, renderCaseAdmin
   };
 
