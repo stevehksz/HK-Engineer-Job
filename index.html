@@ -1097,7 +1097,6 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
     <button type="button" class="cat-tab" data-jt="uk">🇬🇧 英國考牌</button>
     <button type="button" class="cat-tab" data-jt="ice">🎓 ICE考牌</button>
     <button type="button" class="cat-tab" data-jt="edu">🏛 學歷認證</button>
-    <button type="button" class="cat-tab" data-jt="se">🧱 結構師考試</button>
     <button type="button" class="cat-tab" data-jt="cpd">📚 免費 CPD</button>
   </div>
 
@@ -1177,6 +1176,23 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
           <li>屋宇裝備顧問、機電承建商及政府機電項目的高階職位，普遍以 RPE（機電界別）為門檻</li>
         </ul>
         <div class="row" style="margin-top:12px"><button class="btn" onclick="licGo('ee')">看機電考牌子目錄 →</button></div>
+      </div>
+    </div>
+    <div class="path-card">
+      <div class="path-head">
+        <div class="ph-top"><h4>🧱 結構師考試（IStructE / HKIE Structural）</h4><span class="ph-tag">結構主線</span></div>
+        <p>香港結構師（SE / RSE）的專業考試主線：<b>HKIE Structural Examination</b>，同源標準仲有 <b>IStructE Exam</b> 可以同步報考——報名費過千，唔好裸考。</p>
+      </div>
+      <div class="path-body">
+        <ul>
+          <li>筆試＝MCQ 1 小時＋<b>設計題 6.5 小時</b>（一日共 7.5 小時）；面試 45 分鐘（含 15 分鐘簡報）——官方明示<b>筆試與面試互不為前提</b>，可分開規劃備考</li>
+          <li>費用 HK$4,000–5,500 量級（IStructE 同步報考另計）；最貴係重考——時間分配比操卷量重要：基礎鞏固（Load Path）→ 實戰畫圖＋計數（建立即用 template）→ 真題題解</li>
+          <li>2024 改制：Sustainability 入評分——Scheme Design 要體現低碳考量（材料選擇、蘊含碳、可建造性），淨計結構力學冇分</li>
+          <li>常見失分位：Scheme 唔夠 distinct（兩個方案要結構體系層面真正唔同）、Letter / Method Statement 囉嗦、計數漏項圖紙含糊</li>
+          <li>簡報與面試答題結構，直接用本站「🎓 ICE考牌 → 面試指導」嘅 STAR-L 模板，兩邊通用</li>
+        </ul>
+        <p class="note">筆試日期、Preparatory Seminar（HK$250、Chief Examiners 主講）及費用以 <b>HKIE / IStructE</b> 官網當年公佈為準。</p>
+        <div class="row" style="margin-top:12px"><button class="btn" onclick="ICEPublic.go('quiz')">試做模擬試題 →</button><button class="btn" onclick="ICEPublic.go('interview')">面試指導 →</button></div>
       </div>
     </div>
     <div class="path-card">
@@ -1742,48 +1758,7 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
     <button class="btn" onclick="ICEPublic.go('jobs')">💼 看香港求職板塊</button>
   </div>
   </div><!-- /jpane edu -->
-  <!-- 子頁籤 9：結構師考試（v3.40 新增——IStructE / HKIE Structural Exam 完全指南，免費引流） -->
-  <div class="jpane" data-jp="se" hidden>
-  <div class="hero">
-    <h1>🧱 結構師考試 · IStructE / HKIE Structural</h1>
-    <p class="lead">香港結構師（SE / RSE）的專業考試主線：<b>HKIE Structural Examination</b>，同源標準仲有 <b>IStructE Exam</b> 可以同步報考。呢頁講清楚考試結構、成本、改制同備考框架——報名費都過千，唔好裸考。</p>
-    <p><span class="tag">筆試：MCQ 1 小時＋設計題 6.5 小時</span><span class="tag">面試：45 分鐘（含 15 分鐘簡報）</span><span class="tag">筆試與面試獨立，互不為前提</span></p>
-  </div>
-
-  <div class="card">
-    <h2>① 考試結構（官方口徑）</h2>
-    <p>HKIE Structural Examination 分兩部分，官方明示<b>過筆試唔係出面試嘅前提，反之亦然</b>——可以分開規劃、分開備考：</p>
-    <p>📝 <b>筆試（Written Examination）</b>：MC 選擇題 1 小時＋<b>設計題 6.5 小時</b>，一日考完共 7.5 小時——體能同行程都要預埋。</p>
-    <p>🎤 <b>面試（Interview）</b>：45 分鐘，當中 15 分鐘係你嘅簡報。簡報結構建議參考上面「🎓 ICE考牌 → 面試指導」嘅 STAR-L 模板，兩邊通用。</p>
-    <p class="note">每年筆試日期同 Preparatory Seminar（HK$250、Chief Examiners 主講、名額有限）以 HKIE 官網當年公佈為準。</p>
-  </div>
-
-  <div class="card">
-    <h2>② 成本帳：最貴唔係報名費，係重考</h2>
-    <p>考試費 HK$4,000–5,500 量級（申請費＋評審費＋結構考試附加費，組成以官網為準）；IStructE 同步報考另計。</p>
-    <p>但真正貴嘅係<b>重考</b>：又一次報名費＋幾個月備考時間。所以準備要系統性，時間分配比操卷量重要：<b>基礎鞏固</b>（Load Path、各結構系統嘅穩定性概念）→ <b>實戰畫圖＋計數</b>（建立自己嘅即用 template：風荷載、Critical Members）→ <b>真題題解</b>（近幾年題目走勢逐份拆）。</p>
-  </div>
-
-  <div class="card">
-    <h2>③ 2024 改制：Sustainability 入評分</h2>
-    <p>IStructE 改制後評分強調<b>可持續發展</b>：Scheme Design 要體現低碳考量——材料選擇、蘊含碳、可建造性、拆卸回收。淨計結構力學，呢 part 冇分。</p>
-  </div>
-
-  <div class="card">
-    <h2>④ 常見失分位</h2>
-    <p>❌ <b>Scheme 唔夠 distinct</b>：兩個方案要喺結構體系層面真正唔同，唔係同一個方案換材料就叫第二個。</p>
-    <p>❌ <b>Letter / Method Statement 囉嗦</b>：評分位冇着墨，寫極都冇分；要精簡、專業。</p>
-    <p>❌ <b>計數漏項、圖紙表達含糊</b>：邊個係 Critical Member、點解，要一眼睇明。</p>
-  </div>
-
-  <div class="card">
-    <h2>⑤ 呢個平台點幫你</h2>
-    <p>上面「🎓 ICE考牌」子頁籤嘅<b>模擬試題</b>（流程知識即時判分＋情景題＋90 分鐘寫作模擬）同<b>面試指導</b>（簡報規劃器、STAR-L 答題結構、模擬面試抽題）都係為專業考試而設——免費體驗，付費解鎖全部題庫。</p>
-  </div>
-  </div>
-
-  <!-- v3.8：免費 CPD 學習主目錄（對外訪客版，手機優先 · 可折疊） -->
-  <div class="jpane" data-jp="cpd" id="pane-cpd" hidden>
+<div class="jpane" data-jp="cpd" id="pane-cpd" hidden>
   <div class="wrap">
     <div class="cpd-hero">
       <h2>📚 免費 CPD 學習主目錄</h2>
@@ -3377,7 +3352,7 @@ function licGo(jt){
 }
 window.licGo = licGo;   /* 卡片 onclick 需要（本 script 為 IIFE 包裹，頂層宣告不會自動掛到 window） */
 function go(id){
-  var sub = (id === 'ice' || id === 'edu' || id === 'qs' || id === 'ee' || id === 'ewl' || id === 'uk' || id === 'cpd' || id === 'se') ? id : null;   /* 舊鏈接 go('ice')/go('edu')/go('qs')/go('ee')/go('ewl')/go('uk')/go('cpd')/go('se') → 打開 lic 並激活對應子頁（v3.17 併入 CPD；v3.40 加結構師考試 se） */
+  var sub = (id === 'ice' || id === 'edu' || id === 'qs' || id === 'ee' || id === 'ewl' || id === 'uk' || id === 'cpd') ? id : null;   /* 舊鏈接 go('ice')/go('edu')/go('qs')/go('ee')/go('ewl')/go('uk')/go('cpd') → 打開 lic 並激活對應子頁（v3.17 併入 CPD） */
   if (sub) id = 'lic';
   const lit = ICE_SUBS[id] ? 'lic' : id;
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.tab===lit));
