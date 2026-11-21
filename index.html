@@ -4507,6 +4507,12 @@ try{
     __rb.style.cssText='border:0;border-radius:999px;padding:3px 9px;font-size:11px;cursor:pointer;background:#fff;color:#B8860B;font-weight:700';
     __rb.addEventListener('click', function(){ try{ store.pd='0'; delete store.pva; lsSave(); }catch(e){} try{ document.body.removeAttribute('data-pv'); ['iceQuizAdmin','iceIqAdmin','iceFleAdmin','iceCommAdmin'].forEach(function(id){ var el=document.getElementById(id); if(el) el.hidden=true; }); }catch(e){} renderPaywalls(); __ab.remove(); });
     __ab.appendChild(__rb);
+    /* v3.38：一鍵看訪客視角（帶 ?pv=0 重載，不改本機解鎖狀態、保留 sharecode 等其他參數）——
+       葉工反餉「我自己也看不到預覽卡」：pv=1 永久解鎖後付費牆根本不渲染，這按鈕就是解藥 */
+    var __vb=document.createElement('button'); __vb.textContent='👁 訪客視角';
+    __vb.style.cssText='border:0;border-radius:999px;padding:3px 9px;font-size:11px;cursor:pointer;background:#fff;color:#534AB7;font-weight:700';
+    __vb.addEventListener('click', function(){ var q=(location.search||'').replace(/^\?/,'').split('&').filter(function(x){ return x && x.indexOf('pv=')!==0; }); q.push('pv=0'); location.href=location.pathname+'?'+q.join('&'); });
+    __ab.appendChild(__vb);
     document.body.appendChild(__ab);
   }
 }catch(e){}
