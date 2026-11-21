@@ -4474,16 +4474,23 @@ async function redeemSubmit(){
   if(out){
     if(r&&r.reason==='used') out.textContent='❌ 此兌換碼已被其他設備使用；換設備請聯繫葉工重置（SteveHKSZ）';
     else if(r&&r.reason==='notfound') out.textContent='❌ 兌換碼無效，請核對後重試';
-    else if(r&&r.reason==='github') out.innerHTML='⚠️ github.io 版唔支援在線兌換（跨域限制）。請到主站解鎖：<a href="https://stevehksz.app.workbuddy.host/?sharecode=KCSIXWRVH6&pv=0" style="color:#534AB7;font-weight:700">stevehksz.app.workbuddy.host</a>（兌換碼喺主站一樣用到）';
+    else if(r&&r.reason==='github') out.innerHTML='⚠️ github.io 版唔支援在線兌換（跨域限制）。請到主站解鎖：<a href="https://stevehksz.app.workbuddy.host/?sharecode=KCSIXWRVH6" style="color:#534AB7;font-weight:700">stevehksz.app.workbuddy.host</a>（兌換碼喺主站一樣用到）';
     else out.textContent='⚠️ 驗證失敗：'+((r&&r.error)||'請稍後重試');
   }
 }
+function pv0Reload(){
+  /* v3.43：?pv=0 是「強制客戶視角」（本機有解鎖也上鎖）——真實兌換成功後必須剝掉 pv=0 重載，否則解鎖永不生效、UI 卡「驗證中」 */
+  if(!/[?&]pv=0/.test(location.search)) return false;
+  var q=location.search.replace(/^\?/,'').split('&').filter(function(x){ return x && x.indexOf('pv=')!==0; });
+  location.replace(location.pathname + (q.length?'?'+q.join('&'):'') + location.hash);
+  return true;
+}
 function applyPaid(){
-  store.pd='1'; lsSave(); renderPaywalls();
+  store.pd='1'; lsSave(); if(pv0Reload()) return; renderPaywalls();
   try{ if(typeof toast==='function') toast('🎉 已解鎖！模擬試題與面試指導全部開放'); }catch(e){}
 }
 function applyPaidRg(){
-  store.prg='1'; lsSave(); renderPaywalls();
+  store.prg='1'; lsSave(); if(pv0Reload()) return; renderPaywalls();
   try{ if(typeof toast==='function') toast('🎉 已解鎖！簡歷工坊範本與檢查清單全部開放'); }catch(e){}
 }
 async function rgRedeemSubmit(){
@@ -4500,7 +4507,7 @@ async function rgRedeemSubmit(){
   if(out){
     if(r&&r.reason==='used') out.textContent='❌ 此兌換碼已被其他設備使用；換設備請聯繫葉工重置（SteveHKSZ）';
     else if(r&&r.reason==='notfound') out.textContent='❌ 兌換碼無效，請核對後重試';
-    else if(r&&r.reason==='github') out.innerHTML='⚠️ github.io 版唔支援在線兌換（跨域限制）。請到主站解鎖：<a href="https://stevehksz.app.workbuddy.host/?sharecode=KCSIXWRVH6&pv=0&rgc='+code+'" style="color:#534AB7;font-weight:700">主站（自動帶碼）</a>，撳「解鎖」完成驗證';
+    else if(r&&r.reason==='github') out.innerHTML='⚠️ github.io 版唔支援在線兌換（跨域限制）。請到主站解鎖：<a href="https://stevehksz.app.workbuddy.host/?sharecode=KCSIXWRVH6&rgc='+code+'" style="color:#534AB7;font-weight:700">主站（自動帶碼）</a>，撳「解鎖」完成驗證';
     else out.textContent='⚠️ 驗證失敗：'+((r&&r.error)||'請稍後重試');
   }
 }
@@ -4728,7 +4735,7 @@ async function shopRedeem(){
   var msg;
   if (r && r.reason === 'used') msg = '❌ 此兌換碼已被其他設備使用；換設備請聯繫葉工重置（SteveHKSZ）';
   else if (r && r.reason === 'notfound') msg = '❌ 兌換碼無效，請核對後重試';
-  else if (r && r.reason === 'github') msg = '⚠️ github.io 版唔支援在線兌換（跨域限制）。請到主站解鎖：' + '<a href="https://stevehksz.app.workbuddy.host/?sharecode=KCSIXWRVH6&pv=0" style="color:#534AB7;font-weight:700">stevehksz.app.workbuddy.host</a>';
+  else if (r && r.reason === 'github') msg = '⚠️ github.io 版唔支援在線兌換（跨域限制）。請到主站解鎖：' + '<a href="https://stevehksz.app.workbuddy.host/?sharecode=KCSIXWRVH6" style="color:#534AB7;font-weight:700">stevehksz.app.workbuddy.host</a>';
   else msg = '⚠️ 驗證失敗：' + ((r && r.error) || '請稍後重試');
   out.innerHTML = '<span style="color:#b00020">' + msg + '</span>';
 }
