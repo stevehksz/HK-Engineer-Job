@@ -4474,6 +4474,7 @@ async function redeemSubmit(){
   if(out){
     if(r&&r.reason==='used') out.textContent='❌ 此兌換碼已被其他設備使用；換設備請聯繫葉工重置（SteveHKSZ）';
     else if(r&&r.reason==='notfound') out.textContent='❌ 兌換碼無效，請核對後重試';
+    else if(r&&r.reason==='github') out.innerHTML='⚠️ github.io 版唔支援在線兌換（跨域限制）。請到主站解鎖：<a href="https://stevehksz.app.workbuddy.host/?sharecode=KCSIXWRVH6&pv=0" style="color:#534AB7;font-weight:700">stevehksz.app.workbuddy.host</a>（兌換碼喺主站一樣用到）';
     else out.textContent='⚠️ 驗證失敗：'+((r&&r.error)||'請稍後重試');
   }
 }
@@ -4499,6 +4500,7 @@ async function rgRedeemSubmit(){
   if(out){
     if(r&&r.reason==='used') out.textContent='❌ 此兌換碼已被其他設備使用；換設備請聯繫葉工重置（SteveHKSZ）';
     else if(r&&r.reason==='notfound') out.textContent='❌ 兌換碼無效，請核對後重試';
+    else if(r&&r.reason==='github') out.innerHTML='⚠️ github.io 版唔支援在線兌換（跨域限制）。請到主站解鎖：<a href="https://stevehksz.app.workbuddy.host/?sharecode=KCSIXWRVH6&pv=0&rgc='+code+'" style="color:#534AB7;font-weight:700">主站（自動帶碼）</a>，撳「解鎖」完成驗證';
     else out.textContent='⚠️ 驗證失敗：'+((r&&r.error)||'請稍後重試');
   }
 }
@@ -4522,6 +4524,8 @@ var __pv = /[?&]pv=1/.test(location.search);
 if (/[?&]pv=0/.test(location.search)) { try{ document.body.setAttribute('data-fl','1'); }catch(e){} }   /* v1.98：?pv=0 強制上鎖（客戶視角預覽，不改動本機解鎖狀態） */
 if (__pv) { try{ document.body.setAttribute('data-pv','1'); }catch(e){} }
 restorePath(); refreshStats(); initAI(); initGate(); setQuizRoute(store.qz || 'all'); renderAuthor();renderShop(); try{ var __rp=renderShopPane(); if(__rp&&__rp.catch) __rp.catch(function(){}); }catch(e){} try{ rgBind(); }catch(e){} renderPaywalls();
+/* v3.42：?rgc=XXXX 預填簡歷工坊兌換碼（github.io 兌換跨域被拒，引導跳主站時自動帶碼） */
+try{ var __rm=location.search.match(/[?&]rgc=([A-Za-z0-9]{4,12})/); if(__rm){ var __ri=document.getElementById('rgpwCode'); if(__ri&&!__ri.value){ __ri.value=__rm[1].toUpperCase(); var __ro=document.getElementById('rgpwOut'); if(__ro) __ro.textContent='✅ 已幫你帶入兌換碼，撳「解鎖」完成驗證'; } } }catch(e){}
 /* v1.94：葉工預覽模式 → 本機永久解鎖付費內容（一次性 ?pv=1，之後此設備不再上鎖）＋顯示 AI 換題管理卡 */
 if (__pv) {
   try{ store.pd='1'; store.pva='1'; lsSave(); }catch(e){}   /* v1.98：pva=管理員解鎖標記（兌換碼解鎖無此標記） */
@@ -4724,6 +4728,7 @@ async function shopRedeem(){
   var msg;
   if (r && r.reason === 'used') msg = '❌ 此兌換碼已被其他設備使用；換設備請聯繫葉工重置（SteveHKSZ）';
   else if (r && r.reason === 'notfound') msg = '❌ 兌換碼無效，請核對後重試';
+  else if (r && r.reason === 'github') msg = '⚠️ github.io 版唔支援在線兌換（跨域限制）。請到主站解鎖：' + '<a href="https://stevehksz.app.workbuddy.host/?sharecode=KCSIXWRVH6&pv=0" style="color:#534AB7;font-weight:700">stevehksz.app.workbuddy.host</a>';
   else msg = '⚠️ 驗證失敗：' + ((r && r.error) || '請稍後重試');
   out.innerHTML = '<span style="color:#b00020">' + msg + '</span>';
 }
@@ -6548,10 +6553,11 @@ Object.assign(window.ICEPublic, { rgTab: rgTab, rgCkReset: rgCkReset, rgPrice: r
         if (!dev) { dev = 'd' + Math.random().toString(36).slice(2, 12) + Date.now().toString(36); localStorage.setItem('icepub_devid', dev); }
       } catch (e) { dev = 'anon'; }
       const { data, error } = await cloud.database.rpc('redeem_code', { p_code: code, p_dev: dev });
-      if (error) return { ok: false, error: (error.message || String(error)) };
+      /* v3.42：github.io 域名跨域被網關 403（同 v3.34 統計打點問題），一律回 github 引導去主站 */
+      if (error) { if (location.hostname === 'stevehksz.github.io') return { ok: false, reason: 'github' }; return { ok: false, error: (error.message || String(error)) }; }
       const r = typeof data === 'string' ? JSON.parse(data) : data;
       return r && r.ok ? { ok: true } : { ok: false, reason: r && r.reason };
-    } catch (e) { return { ok: false, error: (e && e.message) || String(e) }; }
+    } catch (e) { if (location.hostname === 'stevehksz.github.io') return { ok: false, reason: 'github' }; return { ok: false, error: (e && e.message) || String(e) }; }
   }
   function rcMake() {
     const A = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; let c = '';
