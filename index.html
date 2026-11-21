@@ -707,6 +707,13 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:860px}
 #icePub .paywall .pw-redeem button{padding:10px 16px;border:0;border-radius:9px;background:linear-gradient(135deg,#B8860B,#d4a017);color:#fff;font-weight:700;font-size:14px;cursor:pointer}
 #icePub .paywall #pwOut{font-size:13px;margin-top:10px;min-height:18px;color:#8a6d1a}
 #icePub .paywall .pw-note{font-size:12px;color:#999;margin-top:10px}
+.pw-faq{max-width:360px;margin:12px auto 0;text-align:left}
+.pw-faq-t{font-size:11px;font-weight:700;color:#8a6d1a;text-align:center;margin-bottom:5px}
+.pw-faq details{background:#fffdf5;border:1px solid #e3d9bd;border-radius:8px;margin:5px 0;overflow:hidden}
+.pw-faq summary{cursor:pointer;font-size:12px;font-weight:700;color:#5a4a12;padding:7px 10px;list-style:none;-webkit-user-select:none;user-select:none}
+.pw-faq summary::-webkit-details-marker{display:none}
+.pw-faq details[open] summary{border-bottom:1px dashed #e3d9bd}
+.pw-faq .a{font-size:11.5px;color:#666;padding:7px 10px;line-height:1.7}
 .pw-sample{max-width:360px;margin:14px auto 4px;background:#fffdf5;border:1px solid #e3d9bd;border-radius:12px;padding:10px 12px 8px;box-shadow:0 2px 12px rgba(112,48,160,.10)}
 .ps-tag{font-size:11px;font-weight:700;color:#8a6d1a;text-align:center;margin-bottom:6px}
 .ps-doc{background:#fff;border:1px solid #eee;border-radius:6px;padding:10px 12px 8px;font-family:'Times New Roman',serif;text-align:left}
@@ -1090,6 +1097,7 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
     <button type="button" class="cat-tab" data-jt="uk">🇬🇧 英國考牌</button>
     <button type="button" class="cat-tab" data-jt="ice">🎓 ICE考牌</button>
     <button type="button" class="cat-tab" data-jt="edu">🏛 學歷認證</button>
+    <button type="button" class="cat-tab" data-jt="se">🧱 結構師考試</button>
     <button type="button" class="cat-tab" data-jt="cpd">📚 免費 CPD</button>
   </div>
 
@@ -1734,6 +1742,46 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
     <button class="btn" onclick="ICEPublic.go('jobs')">💼 看香港求職板塊</button>
   </div>
   </div><!-- /jpane edu -->
+  <!-- 子頁籤 9：結構師考試（v3.40 新增——IStructE / HKIE Structural Exam 完全指南，免費引流） -->
+  <div class="jpane" data-jp="se" hidden>
+  <div class="hero">
+    <h1>🧱 結構師考試 · IStructE / HKIE Structural</h1>
+    <p class="lead">香港結構師（SE / RSE）的專業考試主線：<b>HKIE Structural Examination</b>，同源標準仲有 <b>IStructE Exam</b> 可以同步報考。呢頁講清楚考試結構、成本、改制同備考框架——報名費都過千，唔好裸考。</p>
+    <p><span class="tag">筆試：MCQ 1 小時＋設計題 6.5 小時</span><span class="tag">面試：45 分鐘（含 15 分鐘簡報）</span><span class="tag">筆試與面試獨立，互不為前提</span></p>
+  </div>
+
+  <div class="card">
+    <h2>① 考試結構（官方口徑）</h2>
+    <p>HKIE Structural Examination 分兩部分，官方明示<b>過筆試唔係出面試嘅前提，反之亦然</b>——可以分開規劃、分開備考：</p>
+    <p>📝 <b>筆試（Written Examination）</b>：MC 選擇題 1 小時＋<b>設計題 6.5 小時</b>，一日考完共 7.5 小時——體能同行程都要預埋。</p>
+    <p>🎤 <b>面試（Interview）</b>：45 分鐘，當中 15 分鐘係你嘅簡報。簡報結構建議參考上面「🎓 ICE考牌 → 面試指導」嘅 STAR-L 模板，兩邊通用。</p>
+    <p class="note">每年筆試日期同 Preparatory Seminar（HK$250、Chief Examiners 主講、名額有限）以 HKIE 官網當年公佈為準。</p>
+  </div>
+
+  <div class="card">
+    <h2>② 成本帳：最貴唔係報名費，係重考</h2>
+    <p>考試費 HK$4,000–5,500 量級（申請費＋評審費＋結構考試附加費，組成以官網為準）；IStructE 同步報考另計。</p>
+    <p>但真正貴嘅係<b>重考</b>：又一次報名費＋幾個月備考時間。所以準備要系統性，時間分配比操卷量重要：<b>基礎鞏固</b>（Load Path、各結構系統嘅穩定性概念）→ <b>實戰畫圖＋計數</b>（建立自己嘅即用 template：風荷載、Critical Members）→ <b>真題題解</b>（近幾年題目走勢逐份拆）。</p>
+  </div>
+
+  <div class="card">
+    <h2>③ 2024 改制：Sustainability 入評分</h2>
+    <p>IStructE 改制後評分強調<b>可持續發展</b>：Scheme Design 要體現低碳考量——材料選擇、蘊含碳、可建造性、拆卸回收。淨計結構力學，呢 part 冇分。</p>
+  </div>
+
+  <div class="card">
+    <h2>④ 常見失分位</h2>
+    <p>❌ <b>Scheme 唔夠 distinct</b>：兩個方案要喺結構體系層面真正唔同，唔係同一個方案換材料就叫第二個。</p>
+    <p>❌ <b>Letter / Method Statement 囉嗦</b>：評分位冇着墨，寫極都冇分；要精簡、專業。</p>
+    <p>❌ <b>計數漏項、圖紙表達含糊</b>：邊個係 Critical Member、點解，要一眼睇明。</p>
+  </div>
+
+  <div class="card">
+    <h2>⑤ 呢個平台點幫你</h2>
+    <p>上面「🎓 ICE考牌」子頁籤嘅<b>模擬試題</b>（流程知識即時判分＋情景題＋90 分鐘寫作模擬）同<b>面試指導</b>（簡報規劃器、STAR-L 答題結構、模擬面試抽題）都係為專業考試而設——免費體驗，付費解鎖全部題庫。</p>
+  </div>
+  </div>
+
   <!-- v3.8：免費 CPD 學習主目錄（對外訪客版，手機優先 · 可折疊） -->
   <div class="jpane" data-jp="cpd" id="pane-cpd" hidden>
   <div class="wrap">
@@ -2172,7 +2220,6 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
     <p><b>L 反思</b> → 學到什麼、如何影響你日後的做法；失敗經驗也照實講，說明補救與成長。</p>
     <p class="note">常見失分：只列工作內容沒有決策、全程用「我們」看不出你的貢獻、答案空泛沒有數字、把別人的貢獻說成自己的。</p>
   </div>
-  
 
 </section>
 
@@ -3330,7 +3377,7 @@ function licGo(jt){
 }
 window.licGo = licGo;   /* 卡片 onclick 需要（本 script 為 IIFE 包裹，頂層宣告不會自動掛到 window） */
 function go(id){
-  var sub = (id === 'ice' || id === 'edu' || id === 'qs' || id === 'ee' || id === 'ewl' || id === 'uk' || id === 'cpd') ? id : null;   /* 舊鏈接 go('ice')/go('edu')/go('qs')/go('ee')/go('ewl')/go('uk')/go('cpd') → 打開 lic 並激活對應子頁（v3.17 併入 CPD） */
+  var sub = (id === 'ice' || id === 'edu' || id === 'qs' || id === 'ee' || id === 'ewl' || id === 'uk' || id === 'cpd' || id === 'se') ? id : null;   /* 舊鏈接 go('ice')/go('edu')/go('qs')/go('ee')/go('ewl')/go('uk')/go('cpd')/go('se') → 打開 lic 並激活對應子頁（v3.17 併入 CPD；v3.40 加結構師考試 se） */
   if (sub) id = 'lic';
   const lit = ICE_SUBS[id] ? 'lic' : id;
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.tab===lit));
@@ -4390,6 +4437,14 @@ function paywallHTML(prod){
     +'<div class="ps-sec">PROFESSIONAL EXPERIENCE</div><div class="ps-job">Construction Co. (Hong Kong) | 2024 - Present</div><div class="ps-role">Structural Engineer (Temporary Works)</div><div class="ps-ln" style="width:94%"></div><div class="ps-ln" style="width:84%"></div><div class="ps-ln" style="width:66%"></div>'
     +'<div class="ps-sec">ADDITIONAL INFORMATION</div><div class="ps-ln" style="width:78%"></div><div class="ps-ln" style="width:62%"></div>'
     +'</div><div class="ps-cap">▲ 範本實際排版（Times New Roman 專業版式 · 4 類崗位各一份 · 直接套改就投）</div></div>'; }
+  if(!isRg){ /* v3.40：付費牆 FAQ（異議處理，借鑑同行站 FAQ 模式，內容對標本站實際題庫功能） */ h+='<div class="pw-faq"><div class="pw-faq-t">❓ 常見問題 · 點開睇</div>'
+    +'<details><summary>模擬試題係咪官方試題？</summary><div class="a">唔係——全部係葉工原創練習材料，用於檢視你對考試流程同要求嘅掌握，唔係官方 past paper。官方真題請向學會購買。</div></details>'
+    +'<details><summary>我係 ICE 定 HKIE 路線，啱用嗎？</summary><div class="a">A 部分流程知識測驗兩種路線都建議先做；B 部分對標 Further Learning Exam；C 部分寫作任務同 CPR 90 分鐘二選一格式。專業考試嘅流程邏輯同評審思路大同小異。</div></details>'
+    +'<details><summary>得幾個月時間，用唔用得切？</summary><div class="a">用得切。每套情景題附答題框架＋自查點——短期備考最有效嘅係聚焦流程同失分位，唔係海題戰術。</div></details>'
+    +'<details><summary>我考過但 fail 咗，重考有幫助嗎？</summary><div class="a">更加啱用。常見失分位逐項拆：只列工作內容冇決策、答案冇數字、結構亂、把別人貢獻講成自己。針對性改善，唔好重複交學費。</div></details>'
+    +'<details><summary>點解要收費？自己溫唔得咩？</summary><div class="a">得，但資料要自己搵齊、方向要自己判斷。呢度慮返嘅係摸索時間——比起考試費同重考成本，呢個係最平嘅嗰一環。</div></details>'
+    +'<details><summary>解鎖之後有咩、用到幾耐？</summary><div class="a">終身解鎖全部題庫：A 流程測驗、B FLE 情景題全套、C 寫作題全套、面試題庫＋模擬面試抽題＋STAR-L 模板。</div></details>'
+    +'</div>'; }
   if(qr) h+='<img src="'+qr+'" alt="微信收款二維碼">';
   h+='<p class="pw-cap">微信掃碼添加葉工（SteveHKSZ）付款 · 付款後索取'+(isRg?' R 開頭':'')+'兌換碼</p>';
   h+='<ol class="pw-steps">';
