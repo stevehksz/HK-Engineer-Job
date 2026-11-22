@@ -916,6 +916,39 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
   #icePub .cpd-fold>summary{padding:12px 13px}
   #icePub .cpd-fold .ft b{font-size:14px}
   #icePub .cpd-fold .fbody{padding:0 13px 13px;padding-top:12px}
+/* ===== v3.44：電視／大屏適配（智能電視 1920x1080 起，遙控器 3 米觀看） ===== */
+@media (min-width:1200px){
+  #icePub .wrap{max-width:1360px;padding:0 30px}
+  #icePub .hero{padding:30px 34px}
+  #icePub .hero h1{font-size:30px}
+  #icePub h1{font-size:28px}
+  #icePub h2{font-size:22px;margin:32px 0 12px;padding-left:12px;border-left-width:4px}
+  #icePub h3{font-size:19px}
+  #icePub p,#icePub li{font-size:16.5px;line-height:1.85}
+  #icePub .lead{font-size:17px;line-height:1.75}
+  #icePub .note{font-size:14.5px}
+  #icePub .card{padding:24px 28px;border-radius:14px;margin:16px 0}
+  #icePub .tag{font-size:13.5px;padding:4px 12px}
+  #icePub .btn{padding:13px 24px;font-size:16.5px;border-radius:11px}
+  #icePub .cat-tab{padding:10px 20px;font-size:15px}
+  #icePub input[type=text],#icePub input[type=number],#icePub select,#icePub textarea{font-size:17px;padding:12px 14px}
+  #icePub .path-head{padding:20px 24px}
+  #icePub .pw-faq summary,#icePub .pw-faq .a{font-size:14px;line-height:1.8}
+  #icePub .cpd-fold>summary{padding:15px 17px}
+  #icePub .cpd-fold .ft b{font-size:16px}
+}
+@media (min-width:1600px){
+  #icePub .wrap{max-width:1500px}
+  #icePub .hero h1{font-size:33px}
+  #icePub h2{font-size:24px}
+  #icePub p,#icePub li{font-size:17.5px}
+  #icePub .btn{padding:14px 26px;font-size:17px}
+  #icePub .cat-tab{font-size:16px;padding:11px 22px}
+}
+/* 電視端焦點框加粗，3 米外睇得清（保留原金色，不影響鼠標用戶） */
+@media (min-width:1200px){
+  #icePub :focus-visible{outline-width:3px;outline-offset:3px}
+}
 }
 </style>
 
@@ -4533,6 +4566,17 @@ if (__pv) { try{ document.body.setAttribute('data-pv','1'); }catch(e){} }
 restorePath(); refreshStats(); initAI(); initGate(); setQuizRoute(store.qz || 'all'); renderAuthor();renderShop(); try{ var __rp=renderShopPane(); if(__rp&&__rp.catch) __rp.catch(function(){}); }catch(e){} try{ rgBind(); }catch(e){} renderPaywalls();
 /* v3.42：?rgc=XXXX 預填簡歷工坊兌換碼（github.io 兌換跨域被拒，引導跳主站時自動帶碼） */
 try{ var __rm=location.search.match(/[?&]rgc=([A-Za-z0-9]{4,12})/); if(__rm){ var __ri=document.getElementById('rgpwCode'); if(__ri&&!__ri.value){ __ri.value=__rm[1].toUpperCase(); var __ro=document.getElementById('rgpwOut'); if(__ro) __ro.textContent='✅ 已幫你帶入兌換碼，撳「解鎖」完成驗證'; } } }catch(e){}
+/* v3.44：電視遙控器／鍵盤方向鍵喺分類頁籤之間左右切換（D-pad 冇鼠標可用） */
+document.addEventListener('keydown',function(e){
+  if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft') return;
+  var t=e.target;
+  if(!t||!t.classList||!t.classList.contains('cat-tab')) return;
+  var box=t.parentElement; if(!box) return;
+  var list=Array.prototype.slice.call(box.querySelectorAll('.cat-tab'));
+  var i=list.indexOf(t); if(i<0) return;
+  var n=list[(i+(e.key==='ArrowRight'?1:-1)+list.length)%list.length];
+  if(n){ n.focus(); n.click(); e.preventDefault(); }
+},false);
 /* v1.94：葉工預覽模式 → 本機永久解鎖付費內容（一次性 ?pv=1，之後此設備不再上鎖）＋顯示 AI 換題管理卡 */
 if (__pv) {
   try{ store.pd='1'; store.pva='1'; lsSave(); }catch(e){}   /* v1.98：pva=管理員解鎖標記（兌換碼解鎖無此標記） */
