@@ -2344,10 +2344,10 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
       <input id="radarKw" value="Civil Engineer" oninput="ICEPublic.radarUpdateLinks()" style="flex:1;min-width:170px;padding:8px 10px;border:1px solid #cbd5e1;border-radius:8px;font-size:13.5px" aria-label="搜索關鍵詞">
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px">
-      <a class="cat-tab radar-sbtn" style="margin:0" data-rsite="jobsdb" href="https://hk.jobsdb.hk/j?keywords=Civil%20Engineer" target="_blank" rel="noopener">🔍 JobsDB</a>
+      <a class="cat-tab radar-sbtn" style="margin:0" data-rsite="jobsdb" href="https://hk.jobsdb.com/jobs?keywords=Civil%20Engineer" target="_blank" rel="noopener">🔍 JobsDB</a>
       <a class="cat-tab radar-sbtn" style="margin:0" data-rsite="linkedin" href="https://www.linkedin.com/jobs/search/?keywords=Civil%20Engineer" target="_blank" rel="noopener">🔍 LinkedIn</a>
       <a class="cat-tab radar-sbtn" style="margin:0" data-rsite="indeed" href="https://hk.indeed.com/jobs?q=Civil%20Engineer" target="_blank" rel="noopener">🔍 Indeed</a>
-      <a class="cat-tab radar-sbtn" style="margin:0" data-rsite="gov" href="https://www2.jobs.gov.hk/0/tc/jobseeker/jobsearch/" target="_blank" rel="noopener">🔍 勞工處 iES</a>
+      <a class="cat-tab radar-sbtn" style="margin:0" data-rsite="gov" href="https://www.jobs.gov.hk/0/tc/" target="_blank" rel="noopener">🔍 勞工處 iES</a>
     </div>
   </div>
 
@@ -2672,8 +2672,8 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
       <a href="https://stevehksz.github.io/hk-study-site" target="_blank" rel="noopener" style="color:#1565c0">🏫 葉工 · 香港插班擇校站 <span class="note">（自家 · 北區中小學名單＋時間線＋面試攻略）</span></a>
       <a href="https://applications.edb.gov.hk/schoolsearch" target="_blank" rel="noopener" style="color:#1565c0">🔍 教育局學校搜尋 <span class="note">（全港小學／中學官方檢索）</span></a>
       <a href="https://www.edb.gov.hk/en/student-parents/sch-info/sch-search/schlist-by-district/school-list-n.html" target="_blank" rel="noopener" style="color:#1565c0">📋 教育局 · 按地區學校一覽 <span class="note">（十八區學校名單）</span></a>
-      <a href="https://www.edb.gov.hk/tc/student-parents/primary-secondary-spfa/system-tl/secondary-spfa-index.html" target="_blank" rel="noopener" style="color:#1565c0">🎓 教育局 · 中一學位分配辦法（SPFA）<span class="note">（自行分配／統一派位官方說明）</span></a>
-      <a href="https://www.edb.gov.hk/tc/edu-system/primary-secondary/spa-systems/direct-subsidy-scheme/index.html" target="_blank" rel="noopener" style="color:#1565c0">🏫 教育局 · 直資計劃介紹 <span class="note">（直資學校體系與名單）</span></a>
+      <a href="https://www.edb.gov.hk/tc/edu-system/primary-secondary/spa-systems/secondary-spa/general-info/index.html" target="_blank" rel="noopener" style="color:#1565c0">🎓 教育局 · 中一學位分配辦法（SPFA）<span class="note">（自行分配／統一派位官方說明）</span></a>
+      <a href="https://www.edb.gov.hk/tc/edu-system/primary-secondary/applicable-to-primary-secondary/direct-subsidy-scheme/index.html" target="_blank" rel="noopener" style="color:#1565c0">🏫 教育局 · 直資計劃介紹 <span class="note">（直資學校體系與名單）</span></a>
       <a href="https://www.hkeaa.edu.hk/en" target="_blank" rel="noopener" style="color:#1565c0">📝 香港考試及評核局（HKEAA）<span class="note">（DSE／評測官方）</span></a>
       <a href="https://www.hkedcity.net" target="_blank" rel="noopener" style="color:#1565c0">💻 香港教育城（HKEdCity）<span class="note">（學與教資源平台）</span></a>
       <a href="https://www.hkpl.gov.hk/tc/e-resources/e-books/home" target="_blank" rel="noopener" style="color:#1565c0">📚 香港公共圖書館 · 電子書資源 <span class="note">（免費電子書，練繁體閱讀）</span></a>
@@ -3299,10 +3299,10 @@ function radarKwFill(v){ var inp = document.getElementById('radarKw'); if (inp &
 function radarLinksFor(kw){
   var q = encodeURIComponent(kw);
   return {
-    jobsdb:   'https://hk.jobsdb.hk/j?keywords=' + q,
+    jobsdb:   'https://hk.jobsdb.com/jobs?keywords=' + q,   /* v3.49：舊 hk.jobsdb.hk/j 已失效，改成 .com/jobs */
     linkedin: 'https://www.linkedin.com/jobs/search/?keywords=' + q,
     indeed:   'https://hk.indeed.com/jobs?q=' + q,
-    gov:      'https://www2.jobs.gov.hk/0/tc/jobseeker/jobsearch/'
+    gov:      'https://www.jobs.gov.hk/0/tc/'                 /* v3.49：舊 www2.../jobseeker/jobsearch/ 已 404，改活的首頁 */
   };
 }
 function radarUpdateLinks(){
@@ -6107,6 +6107,16 @@ Object.assign(window.ICEPublic, { rgTab: rgTab, rgCkReset: rgCkReset, rgPrice: r
       if (window.ICEPublic && typeof window.ICEPublic.renderPaywalls === 'function') window.ICEPublic.renderPaywalls();
       if (window.ICEPublic && typeof window.ICEPublic.renderAuthor === 'function') window.ICEPublic.renderAuthor();
     } catch (e) { /* */ }
+    /* v3.50：後台改價後即時刷新已渲染的付費牆價格（renderPaywalls 對已存在的牆不重建） */
+    try {
+      const fmt = v => { const q = String(v||'').trim(); return q ? (/¥|\$/.test(q) ? q : '¥'+q) : ''; };
+      const np = fmt(val.payPrice);
+      document.querySelectorAll('.paywall .pw-price').forEach(function(el){
+        const pane = el.closest('.pane');
+        if (pane && pane.id === 'pane-rg') return;   /* 簡歷工坊價格由 rgPrice 管，這裡只改考牌牆 */
+        if (np) el.textContent = np;
+      });
+    } catch (e) { /* */ }
     const now = $('pqNow'); if (now) now.textContent = pqNowPrice(); const rgNow = $('pqRgNow'); if (rgNow) rgNow.textContent = pqRgNowPrice();
     const au = $('au_price'); if (au) au.value = p;      /* 作者卡欄位同步顯示 */
     out.textContent = '✅ 已發佈：' + pqNowPrice() + '（主站即時生效；github.io 公開版等下次自動同步）'; out.style.color = '#1a7a3a';
@@ -6117,6 +6127,19 @@ Object.assign(window.ICEPublic, { rgTab: rgTab, rgCkReset: rgCkReset, rgPrice: r
     if (r.ok && r.data) {
       window.ICE_AUTHOR_CFG = r.data;
       if (window.ICEPublic && typeof window.ICEPublic.renderAuthor === 'function') window.ICEPublic.renderAuthor(); if (window.ICEPublic.renderShop === 'function') window.ICEPublic.renderShop(); if (window.ICEPublic.renderPaywalls) window.ICEPublic.renderPaywalls();
+      /* v3.50：renderPaywalls 對已存在的 .paywall 不重建（if(!pw)），價格會卡在初次渲染的默认值。
+         讀到雲端 payPrice 後直接改 DOM，確保「改了 899 立刻顯示 899」——這樣才對得上後台所見。 */
+      try {
+        const c = r.data;
+        const fmt = v => { const p = String(v||'').trim(); return p ? (/¥|\$/.test(p) ? p : '¥'+p) : ''; };
+        const np = fmt(c.payPrice), nr = fmt(c.rgPrice);
+        document.querySelectorAll('.paywall .pw-price').forEach(function(el){
+          const pane = el.closest('.pane');
+          const isRg = pane && pane.id === 'pane-rg';
+          const val = isRg ? nr : np;
+          if (val) el.textContent = val;
+        });
+      } catch (e) { /* 價格同步失敗不影響其他配置 */ }
     }
   }
   function fillAuthorForm() {
