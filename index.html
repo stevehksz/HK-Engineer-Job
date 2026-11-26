@@ -965,6 +965,30 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
 #icePub .note-tag.t-news{background:#eef0fb;color:#4353a6}
 #icePub .note-album{display:block;margin:18px 0 4px;padding:14px 18px;border:1px dashed #c9d4e6;border-radius:12px;background:#f7fafd;color:var(--navy2);font-size:14px;line-height:1.7;text-decoration:none}
 #icePub .note-album:hover{border-color:#4353a6;background:#f0f4fc}
+/* v3.57 公眾號合集導航：分組卡片 + 手機自適應 */
+#icePub .album-hub{margin:26px 0 6px;padding:20px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,#fbfdff,#f5f8fc)}
+#icePub .album-hub-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+#icePub .album-hub-head h2{margin:0 0 4px;font-size:18px;color:var(--navy)}
+#icePub .album-hub-head p{margin:0;font-size:13px;color:var(--muted)}
+#icePub .album-hub-count{background:var(--navy2);color:#fff;border-radius:20px;padding:5px 13px;font-size:12px;font-weight:700;white-space:nowrap}
+#icePub .album-group{margin-bottom:18px}
+#icePub .album-group:last-of-type{margin-bottom:0}
+#icePub .album-group-title{font-size:14px;margin:0 0 9px;color:var(--navy2);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#icePub .album-group-title span{font-size:11.5px;font-weight:400;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:12px;padding:2px 9px}
+#icePub .album-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:11px}
+#icePub .album-card{position:relative;display:flex;flex-direction:column;gap:7px;background:#fff;border:1px solid var(--line);border-radius:11px;padding:15px 16px 14px;color:var(--navy);text-decoration:none;transition:transform .15s,border-color .15s,box-shadow .15s}
+#icePub .album-card:hover{transform:translateY(-2px);border-color:#b8901f;box-shadow:0 5px 16px rgba(16,54,92,.1)}
+#icePub .album-ico{font-size:20px;line-height:1}
+#icePub .album-cat{position:absolute;top:14px;right:14px;font-size:10.5px;font-weight:700;color:var(--navy2);background:#eef4fa;border-radius:10px;padding:3px 8px}
+#icePub .album-card h4{margin:0;font-size:15px;line-height:1.4;color:var(--navy);padding-right:46px}
+#icePub .album-card p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.65;min-height:41px}
+#icePub .album-go{margin-top:auto;font-size:12px;font-weight:700;color:var(--navy2)}
+#icePub .album-hint{margin:14px 0 0;font-size:12px;color:var(--muted);line-height:1.7}
+@media(max-width:640px){
+  #icePub .album-hub{padding:15px}
+  #icePub .album-grid{grid-template-columns:1fr}
+  #icePub .album-card p{min-height:0}
+}
 #icePub .note-card h3{font-size:16px;margin:0;line-height:1.5}
 #icePub .note-card h3 a{color:var(--navy);text-decoration:none}
 #icePub .note-card h3 a:hover{color:var(--navy2);text-decoration:underline}
@@ -1040,6 +1064,7 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
     <span class="note-stat">9 篇原創筆記</span>
     <span class="note-stat">持續更新</span>
     <span class="note-stat">來源：公眾號「史蒂夫HKSZ」</span>
+    <span class="note-stat">9 個公眾號合集</span>
   </div>
   <div class="note-filters" id="noteFilters">
     <button class="cat-tab on" type="button" data-note="all">全部</button>
@@ -1334,10 +1359,38 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
     </article>
   </div>
 
-  <a class="note-album" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzcwNjI1ODE4Ng==&action=getalbum&album_id=4640342802600771587&scene=126" target="_blank" rel="noopener">📚 更多「香港工程」時訊（共 10 篇）→ 微信公眾號合集 ↗<br><span style="font-size:12.5px;color:#68748a">北都法例、五年規劃、洪水橋 168 億、施政報告、工程週報等，點此直達合集</span></a>
+  <!-- v3.57 公眾號 9 大合集導航：按主題分組，直達微信原合集 -->
+  <div class="album-hub" id="albumHub">
+    <div class="album-hub-head"><div><h2>📚 公眾號合集導航</h2><p>9 個專題合集，按主題系統閱讀——點卡片直達微信原合集</p></div><span class="album-hub-count">9 個合集</span></div>
+    <div class="album-group">
+      <h3 class="album-group-title">🎯 考牌・求職 <span>入行必讀</span></h3>
+      <div class="album-grid">
+        <a class="album-card" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzcwNjI1ODE4Ng==&action=getalbum&album_id=4505323555018194945&scene=305" target="_blank" rel="noopener"><span class="album-ico">🎓</span><span class="album-cat">考牌</span><h4>香港考牌</h4><p>HKIE / CEng 全流程：入會資格、CPD、學歷評估、考試準備</p><span class="album-go">進入合集 ↗</span></a>
+        <a class="album-card" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzcwNjI1ODE4Ng==&action=getalbum&album_id=4470261279823446016&scene=305" target="_blank" rel="noopener"><span class="album-ico">💼</span><span class="album-cat">求職</span><h4>香港求職</h4><p>香港工程圈求職、HKIE 認證、行業規則與職場生存指南</p><span class="album-go">進入合集 ↗</span></a>
+        <a class="album-card" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzcwNjI1ODE4Ng==&action=getalbum&album_id=4520971892954185739&scene=305" target="_blank" rel="noopener"><span class="album-ico">🌉</span><span class="album-cat">工作</span><h4>香港工作</h4><p>內地土木人打破深港信息差，高薪求職與 RPE 註冊全流程</p><span class="album-go">進入合集 ↗</span></a>
+      </div>
+    </div>
+    <div class="album-group">
+      <h3 class="album-group-title">🏗️ 工程・技術 <span>專業乾貨</span></h3>
+      <div class="album-grid">
+        <a class="album-card" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzcwNjI1ODE4Ng==&action=getalbum&album_id=4640342802600771587&scene=305" target="_blank" rel="noopener"><span class="album-ico">🏗️</span><span class="album-cat">時訊</span><h4>香港工程</h4><p>北都千億基建週期、NEC4 合約、工地與職場邏輯（共 10 篇）</p><span class="album-go">進入合集 ↗</span></a>
+        <a class="album-card" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzcwNjI1ODE4Ng==&action=getalbum&album_id=4672594584793989121&scene=305" target="_blank" rel="noopener"><span class="album-ico">⚙️</span><span class="album-cat">技術</span><h4>工程技術</h4><p>基建、建築、交通及創新科技案例與前沿應用</p><span class="album-go">進入合集 ↗</span></a>
+        <a class="album-card" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzcwNjI1ODE4Ng==&action=getalbum&album_id=4681112948369735682&scene=305" target="_blank" rel="noopener"><span class="album-ico">📐</span><span class="album-cat">工務</span><h4>香港工務</h4><p>香港工務工程實務與行業觀察</p><span class="album-go">進入合集 ↗</span></a>
+      </div>
+    </div>
+    <div class="album-group">
+      <h3 class="album-group-title">🌏 延伸視野 <span>轉型・生活</span></h3>
+      <div class="album-grid">
+        <a class="album-card" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzcwNjI1ODE4Ng==&action=getalbum&album_id=4761879553256669186&scene=305" target="_blank" rel="noopener"><span class="album-ico">🤖</span><span class="album-cat">AI</span><h4>AI 工程探索</h4><p>AI 在工程領域的應用探索</p><span class="album-go">進入合集 ↗</span></a>
+        <a class="album-card" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzcwNjI1ODE4Ng==&action=getalbum&album_id=4470264163608772612&scene=305" target="_blank" rel="noopener"><span class="album-ico">🎒</span><span class="album-cat">留學</span><h4>香港留學</h4><p>香港留學申請與求學經驗</p><span class="album-go">進入合集 ↗</span></a>
+        <a class="album-card" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzcwNjI1ODE4Ng==&action=getalbum&album_id=4650636954865451013&scene=305" target="_blank" rel="noopener"><span class="album-ico">🧰</span><span class="album-cat">勞務</span><h4>香港勞務</h4><p>司機、護工、餐飲、物流真實資訊；拒絕中介套路</p><span class="album-go">進入合集 ↗</span></a>
+      </div>
+    </div>
+    <p class="album-hint">💡 合集喺微信內打開；若微信限制跳轉，複製網址到瀏覽器開啟即可。想先睇本站全文摘要，用上方分類篩選。</p>
+  </div>
   <div class="notes-foot">
     📌 以上筆記由葉工原創，首發於公眾號「史蒂夫HKSZ」。內容摘錄自原文章，觀點與判斷以原文為準；法例、守則及考試要求會更新，實際執行請以屋宇署、勞工處、HKIE 等官方最新公布為準。<br>
-    「工程時訊」為時事評論，時效性強，數字與節點請以政府最新公布為準。想睇更多原創文章？微信搜一搜「史蒂夫HKSZ」，或者按上面卡片嘅「公眾號原文」連結。
+    「工程時訊」為時事評論，時效性強，數字與節點請以政府最新公布為準。想睇更多原創文章？微信搜一搜「史蒂夫HKSZ」，或者按上面卡片嘅「公眾號原文」連結；下方「公眾號合集導航」可直達 9 個專題合集。
   </div>
 </section>
 
