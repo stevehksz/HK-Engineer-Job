@@ -955,7 +955,16 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
 #icePub .notes-hero p{color:#dbe7f4;margin:0;font-size:14px}
 #icePub .notes-hero .note-stat{display:inline-block;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:4px 13px;font-size:12.5px;margin-top:12px;margin-right:8px}
 #icePub .note-filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
-#icePub .note-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+#icePub .note-grid{display:block}
+#icePub .note-folder{border:1px solid var(--line);border-radius:12px;margin-bottom:11px;background:var(--card);overflow:hidden}
+#icePub .note-folder>summary{list-style:none;cursor:pointer;padding:13px 16px;display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;color:var(--navy);user-select:none}
+#icePub .note-folder>summary::-webkit-details-marker{display:none}
+#icePub .note-folder>summary::before{content:"▸";font-size:13px;color:var(--muted);transition:transform .15s;display:inline-block}
+#icePub .note-folder[open]>summary::before{transform:rotate(90deg)}
+#icePub .note-folder>summary:hover{background:#f7fafd}
+#icePub .nf-count{font-size:11.5px;font-weight:500;color:var(--muted);background:#eef4fa;border-radius:12px;padding:2px 9px}
+#icePub .nf-hint{margin-left:auto;font-size:11.5px;font-weight:400;color:var(--muted)}
+#icePub .nf-body{padding:0 12px 13px;display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
 #icePub .note-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:17px 18px;display:flex;flex-direction:column;gap:9px;transition:box-shadow .15s,border-color .15s}
 #icePub .note-card:hover{border-color:#b8901f;box-shadow:0 4px 16px rgba(16,54,92,.09)}
 #icePub .note-tag{display:inline-block;font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:20px;background:#eef4fa;color:var(--navy2);align-self:flex-start}
@@ -1006,9 +1015,9 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
 #icePub .note-body li{margin:3px 0}
 #icePub .note-body .nb-src{font-size:12px;color:var(--muted);margin-top:12px;padding-top:8px;border-top:1px dashed var(--line)}
 #icePub .notes-foot{font-size:12.5px;color:var(--muted);margin-top:20px;padding:14px 16px;background:#eef2f7;border-radius:10px;line-height:1.8}
-#icePub .lp-certs{margin:16px auto 2px;max-width:560px;text-align:center}
-#icePub .lp-cert-btn{display:inline-block;padding:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;cursor:zoom-in;line-height:0;box-shadow:0 2px 10px rgba(16,54,92,.08)}
-#icePub .lp-cert-btn img{display:block;width:100%;height:auto;max-width:560px}
+#icePub .lp-certs{margin:16px auto 2px;width:100%;max-width:none;text-align:center}
+#icePub .lp-cert-btn{display:block;width:100%;max-width:none;margin:0 auto;padding:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;cursor:zoom-in;line-height:0;box-shadow:0 2px 10px rgba(16,54,92,.08)}
+#icePub .lp-cert-btn img{display:block;width:100%;height:auto;max-width:none}
 #icePub .lp-cert-cap{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.7}
 #icePub .lp-cert-cap b{color:var(--ink)}
 #icePub dialog#certLightbox{border:none;border-radius:14px;padding:0;max-width:96vw;max-height:94vh;background:#fff;box-shadow:0 20px 60px rgba(0,0,0,.28)}
@@ -1061,7 +1070,7 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
   <div class="notes-hero">
     <h1>📖 免費工程筆記</h1>
     <p>香港工程實戰、考牌路線、合約規範、工地監督——葉工公眾號原創筆記，全文免費睇，唔使註冊。</p>
-    <span class="note-stat">9 篇原創筆記</span>
+    <span class="note-stat">5 個分類子目錄 · 9 篇原創筆記</span>
     <span class="note-stat">持續更新</span>
     <span class="note-stat">來源：公眾號「史蒂夫HKSZ」</span>
     <span class="note-stat">9 個公眾號合集</span>
@@ -1075,7 +1084,10 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
     <button class="cat-tab" type="button" data-note="news">工程時訊</button>
   </div>
   <div class="note-grid" id="noteGrid">
-    <article class="note-card" data-cat="exam">
+  <details class="note-folder" data-cat="exam">
+    <summary>🎓 考牌路線 <span class="nf-count">1 篇</span><span class="nf-hint">點開睇 ↘</span></summary>
+    <div class="nf-body">
+      <article class="note-card" data-cat="exam">
       <span class="note-tag t-exam">考牌路線</span>
       <h3>考 HKIE 全攻略：三顆絆腳石，一張完整路線圖</h3>
       <p class="note-desc">傳言說要找 FHKIE 簽名、要「找關係」、內地經驗不值錢——逐條拆。目標會籍其實係 MHKIE，4 位 Supporter 法定會員就可簽。</p>
@@ -1112,7 +1124,12 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
 <p>短板：香港最看重現場經驗和香港規範熟悉度，內地 Code 與香港 Code 是兩套語言。補習清單：補香港規範（啃自己專業方向的 Code of Practice）、補現場經驗（工地協調、方案落地記下來，全是 PA 報告素材）、攢 CPD（從現在就開始記，別等交表才翻舊帳）。</p></div><div class="nb-src">來源：公眾號「史蒂夫HKSZ」· 葉工｜2026-10-22｜原文筆記摘錄</div></div>
       <div class="note-meta"><span>2026-10-22</span><span>約 6 分鐘</span></div>
     </article>
-    <article class="note-card" data-cat="site">
+    </div>
+  </details>
+  <details class="note-folder" data-cat="site">
+    <summary>🏗️ 工地實務 <span class="nf-count">2 篇</span><span class="nf-hint">點開睇 ↘</span></summary>
+    <div class="nf-body">
+      <article class="note-card" data-cat="site">
       <span class="note-tag t-site">工地實務</span>
       <h3>香港地盤的平安咭，170 塊其實買不到</h3>
       <p class="note-desc">offer 簽了、開工紙批了，人站到閘口被一句「平安咭呢？」攔住。四個名字一張卡，170 是會員價，有效期三年仲有續證窗口。</p>
@@ -1140,38 +1157,42 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
 <p>招聘常見三樣並排：電工 A 牌、平安咭、建造業工人註冊證。三者性質完全不同——平安咭是安全訓練證明，A 牌是電力工程執業資格，註冊證是工人身份登記。前兩個跟能力有關，平安咭跟能力無關，只證明你聽過安全課、知道規矩。</p></div><div class="nb-src">來源：公眾號「史蒂夫HKSZ」· 葉工｜2026-11-09｜原文筆記摘錄</div></div>
       <div class="note-meta"><span>2026-11-09</span><span>約 5 分鐘</span></div>
     </article>
-    <article class="note-card" data-cat="career">
-      <span class="note-tag ">行情薪酬</span>
-      <h3>香港土木工程师开价 6.5 万，这个数到底什么水平</h3>
-      <p class="note-desc">拿一份真實招聘帖拆香港工程行情：應屆兩萬出頭、骨幹四至六萬、項目經理六萬打底。MHKIE 先，才是真正的分水嶺。</p>
+      <article class="note-card" data-cat="site">
+      <span class="note-tag t-site">圖則報批</span>
+      <h3>商廈商場改建，圖則怎麼報？A&A 工程全流程拆解</h3>
+      <p class="note-desc">不是「裝修要不要報批」，而是「走哪條法定通道」。大型商業 A&A 報 BD 六步流程，加地契同城規兩條平行線，五個高頻踩坑點。</p>
       <div class="note-actions">
         <button class="note-btn" type="button" onclick="noteToggle(this)">展開全文</button>
         
       </div>
-      <div class="note-body"><div class="note-inner"><h4>01 ｜ 6.5 萬一個月，在香港算什麼水平</h4>
-<p>這是「有經驗的骨幹價」，不是新人價，也算不上天花板。拆開看：剛畢業工地工程師本地起薪約兩萬出頭到兩萬五；兩三年升助理工程師、工程師，三萬至四萬；能獨立扛分部工程、帶得動團隊，四萬至六萬；項目經理／合約經理那一層，六萬打底、上不封頂。</p>
-<p>前提是私營承建商在大項目上、還帶花紅的價，不是人人可及的常態。政府在結構工程師職系起薪 77,855 港元（公務員總薪級表），是另一套薪酬體系，還帶房屋、醫療、退休金，兩者沒法直接比高低。</p>
-<p>底層原因係缺人：2026 年建造業輸入勞工計劃放出 8,016 個配額，扎鐵工日薪接近三千港元。技術工種尚且要靠外勞補，工程師這一層更不用說——缺人，才有議價空間。</p>
-<h4>02 ｜ 「MHKIE 優先」才是真正的分水嶺</h4>
-<p>招聘寫得客氣，翻譯成白話就是：沒牌，簡歷大概率過不了初篩。MHKIE 是香港工程師學會會員資格，CEng 是英國工程理事會特許工程師，兩者 internationally 互相認可。拿不拿到這兩個資格，直接決定你是「技術員」還是「工程師」。</p>
-<p>路子：認可學位 → Scheme A 認可培訓計劃 → Professional Assessment 專業評核，整個週期三四年是基本盤。</p>
-<p>給內地同行：內地註冊結構工程師、註冊土木工程師同 MHKIE 不是一套體系，不能直接互換。來港還是要走香港認可路徑，區別只在部分課程和工作經驗可申請評核減免。「內地證書直接換香港牌照」根本沒這回事。</p>
-<h4>03 ｜ 內地工程師來港，三條路各綁着什麼</h4>
+      <div class="note-body"><div class="note-inner"><h4>01 ｜ 先分路：你的工程走哪一條審批通道</h4>
+<p>開篇先把問題改對：不是「裝修要不要報批」，而是「走哪條法定通道」。不同性質的改動，可能走屋宇署（BD）入則、地政總署地契事務、城市規劃委員會三條不同路徑，走錯通道浪費的是幾個月。</p>
+<h4>02 ｜ 大型商業 A&A 報 BD：六步全流程</h4>
 <ul>
-<li><b>專才（輸入內地人才計劃）</b>：先有香港雇主聘用，崗位是本地缺的專業，薪酬達市場水平。直接，但簽證同雇主綁在一起，換工要重新申請。</li>
-<li><b>高才通</b>：2026 年收緊——A 類 250 萬港元認定從「稅前收入」改成「應課稅的就業與經營所得」，炒股、賣房、理財分紅不算；合資格大學名單 199 所調到 200 所。首批正集中進入續簽期。</li>
-<li><b>IANG</b>：給在港讀書畢業的人。畢業六個月內申請算應屆，不用先有聘書；超過六個月要先拿聘用。</li>
+<li><b>Step 0 前期盡職審查</b>：动手之前先查四樣東西——原有圖則、地契條款、是否已有任何違建／未批工程、大廈公契限制</li>
+<li><b>Step 1 委任法定團隊</b>：認可人士（AP）、註冊結構工程師（RSE）、註冊岩土工程師（RGE，如涉及）、註冊承建商（RC）</li>
+<li><b>Step 2 出圖</b>：按《建築物條例》要求準備法定圖則和施工方案</li>
+<li><b>Step 3 呈交圖則</b>：第 14(1) 條入則與跨部門會審（消防、屋宇署其他組別等）</li>
+<li><b>Step 4 批則之後，再取「同意動工」</b>：批則不等於可以開工</li>
+<li><b>Step 5 施工監管與修訂圖則</b>：按《工地監督守則》執行，改動要再入則</li>
+<li><b>Step 6 完工</b>：BA14 還是入伙紙，按工程性質定</li>
 </ul>
-<h4>04 ｜ 招聘要求的背面，係一張能力清單</h4>
-<ul>
-<li><b>BIM</b>：大型基建和政府工程早就不是加分項而是標配，投標文件沒有 BIM 交付計劃，連門都進不去</li>
-<li><b>MiC</b>：組裝合成建築法，政府大力推，北部都會區專門規劃了先進建造業園區——早進場的人有先手</li>
-<li><b>NEC 合約</b>：NEC4 是不少政府工程和公營機構項目在用的合約範本，強調早期預警、合作協商和項目經理角色</li>
-<li><b>結構設計軟件同建模工具</b>：光會看圖紙、跑現場早就不夠了</li>
-</ul></div><div class="nb-src">來源：公眾號「史蒂夫HKSZ」· 葉工｜2026-10-14｜原文筆記摘錄</div></div>
-      <div class="note-meta"><span>2026-10-14</span><span>約 6 分鐘</span></div>
+<h4>03 ｜ 不能只盯 BD：地契與城規兩條平行線</h4>
+<p><b>線一：政府租契（地政總署）</b>——改變用途、加建、容積率變動可能要補地價或申請契約修訂。<b>線二：城市規劃（規劃署／城規會）</b>——某些用途變更要申請許可。</p>
+<h4>04 ｜ 改完要開業：以食肆牌照為例的發牌鏈路</h4>
+<p>圖則批了、工程完工，不等于可以開門做生意。食肆還要過食物環境衞生署的牌照鏈路，消防、排水、通風各有要求。</p>
+<h4>05 ｜ 大型商業 A&A 五個高頻踩坑點</h4>
+<p>典型包括：混淆「入則」與「同意動工」、忽略地契／公契限制、施工中途改方案沒再入則、完工文件（BA14／入伙紙）搞錯、以爲「小型工程」就不用走法定程序。</p>
+<h4>06 ｜ A&A 的本質</h4>
+<p>是在「舊瓶子」裏裝「新酒」——既有建築物的結構、消防、逃生、地契條款都是舊的，新的使用需求要塞進去，靠的就是法定程序把風險釐清。業主側要倒排時間線，把入則、會審、動工、完工每個節點當里程碑管。</p></div><div class="nb-src">來源：公眾號「史蒂夫HKSZ」· 葉工｜2026-11-15｜原文筆記摘錄</div></div>
+      <div class="note-meta"><span>2026-11-15</span><span>約 9 分鐘</span></div>
     </article>
-    <article class="note-card" data-cat="law">
+    </div>
+  </details>
+  <details class="note-folder" data-cat="law">
+    <summary>⚖️ 合約規範 <span class="nf-count">2 篇</span><span class="nf-hint">點開睇 ↘</span></summary>
+    <div class="nf-body">
+      <article class="note-card" data-cat="law">
       <span class="note-tag t-law">合約規範</span>
       <h3>香港工程點解由 GCC 轉用 NEC？一次講透</h3>
       <p class="note-desc">NEC 不是另一本合同，是另一套玩法。项目经理与监理分离、早期预警、风险登记、补偿事件——附香港采用时间线同 HK Edition 特色。</p>
@@ -1203,7 +1224,7 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
 <p>NEC ECC HK Edition（July 2023）加上 ACC（Additional Contract Conditions）體系和本地付款機制配套。能做 NEC 專家（NEC Specialist）的人在項目管理崗上特別吃香。</p></div><div class="nb-src">來源：公眾號「史蒂夫HKSZ」· 葉工｜2026-10-23｜原文筆記摘錄</div></div>
       <div class="note-meta"><span>2026-10-23</span><span>約 8 分鐘</span></div>
     </article>
-    <article class="note-card" data-cat="law">
+      <article class="note-card" data-cat="law">
       <span class="note-tag t-law">工地監督</span>
       <h3>臨時工程出事責任算誰？三檔 Case 一次講清</h3>
       <p class="note-desc">拆屋宇署《工地監督守則》2021 版第 4.9 段流程圖：兩個問號切三檔，Case 3 的 21 日和 7 日死線，Form B 三檔分流。</p>
@@ -1241,37 +1262,48 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
 <p>屋宇署已整合《2024 Edition》上載官網，21 日和 7 日兩個時限沒變。但<b>自 2024 年 11 月 1 日起提交 BA10 的項目，凡涉及天秤支撐的臨時工程</b>，在第 4.9 段要求之外還須加聘設計工程師（DE，RPE 土木／結構資歷加 5 年經驗）簽 Form TW1、獨立核查工程師（ICE）簽 Form TW2，完工以 Form TW3 認證。按 PNAP APP-157 對一遍。</p></div><div class="nb-src">來源：公眾號「史蒂夫HKSZ」· 葉工｜2026-11-11｜原文筆記摘錄</div></div>
       <div class="note-meta"><span>2026-11-11</span><span>約 7 分鐘</span></div>
     </article>
-    <article class="note-card" data-cat="site">
-      <span class="note-tag t-site">圖則報批</span>
-      <h3>商廈商場改建，圖則怎麼報？A&A 工程全流程拆解</h3>
-      <p class="note-desc">不是「裝修要不要報批」，而是「走哪條法定通道」。大型商業 A&A 報 BD 六步流程，加地契同城規兩條平行線，五個高頻踩坑點。</p>
+    </div>
+  </details>
+  <details class="note-folder" data-cat="career">
+    <summary>💰 行情薪酬 <span class="nf-count">1 篇</span><span class="nf-hint">點開睇 ↘</span></summary>
+    <div class="nf-body">
+      <article class="note-card" data-cat="career">
+      <span class="note-tag ">行情薪酬</span>
+      <h3>香港土木工程师开价 6.5 万，这个数到底什么水平</h3>
+      <p class="note-desc">拿一份真實招聘帖拆香港工程行情：應屆兩萬出頭、骨幹四至六萬、項目經理六萬打底。MHKIE 先，才是真正的分水嶺。</p>
       <div class="note-actions">
         <button class="note-btn" type="button" onclick="noteToggle(this)">展開全文</button>
         
       </div>
-      <div class="note-body"><div class="note-inner"><h4>01 ｜ 先分路：你的工程走哪一條審批通道</h4>
-<p>開篇先把問題改對：不是「裝修要不要報批」，而是「走哪條法定通道」。不同性質的改動，可能走屋宇署（BD）入則、地政總署地契事務、城市規劃委員會三條不同路徑，走錯通道浪費的是幾個月。</p>
-<h4>02 ｜ 大型商業 A&A 報 BD：六步全流程</h4>
+      <div class="note-body"><div class="note-inner"><h4>01 ｜ 6.5 萬一個月，在香港算什麼水平</h4>
+<p>這是「有經驗的骨幹價」，不是新人價，也算不上天花板。拆開看：剛畢業工地工程師本地起薪約兩萬出頭到兩萬五；兩三年升助理工程師、工程師，三萬至四萬；能獨立扛分部工程、帶得動團隊，四萬至六萬；項目經理／合約經理那一層，六萬打底、上不封頂。</p>
+<p>前提是私營承建商在大項目上、還帶花紅的價，不是人人可及的常態。政府在結構工程師職系起薪 77,855 港元（公務員總薪級表），是另一套薪酬體系，還帶房屋、醫療、退休金，兩者沒法直接比高低。</p>
+<p>底層原因係缺人：2026 年建造業輸入勞工計劃放出 8,016 個配額，扎鐵工日薪接近三千港元。技術工種尚且要靠外勞補，工程師這一層更不用說——缺人，才有議價空間。</p>
+<h4>02 ｜ 「MHKIE 優先」才是真正的分水嶺</h4>
+<p>招聘寫得客氣，翻譯成白話就是：沒牌，簡歷大概率過不了初篩。MHKIE 是香港工程師學會會員資格，CEng 是英國工程理事會特許工程師，兩者 internationally 互相認可。拿不拿到這兩個資格，直接決定你是「技術員」還是「工程師」。</p>
+<p>路子：認可學位 → Scheme A 認可培訓計劃 → Professional Assessment 專業評核，整個週期三四年是基本盤。</p>
+<p>給內地同行：內地註冊結構工程師、註冊土木工程師同 MHKIE 不是一套體系，不能直接互換。來港還是要走香港認可路徑，區別只在部分課程和工作經驗可申請評核減免。「內地證書直接換香港牌照」根本沒這回事。</p>
+<h4>03 ｜ 內地工程師來港，三條路各綁着什麼</h4>
 <ul>
-<li><b>Step 0 前期盡職審查</b>：动手之前先查四樣東西——原有圖則、地契條款、是否已有任何違建／未批工程、大廈公契限制</li>
-<li><b>Step 1 委任法定團隊</b>：認可人士（AP）、註冊結構工程師（RSE）、註冊岩土工程師（RGE，如涉及）、註冊承建商（RC）</li>
-<li><b>Step 2 出圖</b>：按《建築物條例》要求準備法定圖則和施工方案</li>
-<li><b>Step 3 呈交圖則</b>：第 14(1) 條入則與跨部門會審（消防、屋宇署其他組別等）</li>
-<li><b>Step 4 批則之後，再取「同意動工」</b>：批則不等於可以開工</li>
-<li><b>Step 5 施工監管與修訂圖則</b>：按《工地監督守則》執行，改動要再入則</li>
-<li><b>Step 6 完工</b>：BA14 還是入伙紙，按工程性質定</li>
+<li><b>專才（輸入內地人才計劃）</b>：先有香港雇主聘用，崗位是本地缺的專業，薪酬達市場水平。直接，但簽證同雇主綁在一起，換工要重新申請。</li>
+<li><b>高才通</b>：2026 年收緊——A 類 250 萬港元認定從「稅前收入」改成「應課稅的就業與經營所得」，炒股、賣房、理財分紅不算；合資格大學名單 199 所調到 200 所。首批正集中進入續簽期。</li>
+<li><b>IANG</b>：給在港讀書畢業的人。畢業六個月內申請算應屆，不用先有聘書；超過六個月要先拿聘用。</li>
 </ul>
-<h4>03 ｜ 不能只盯 BD：地契與城規兩條平行線</h4>
-<p><b>線一：政府租契（地政總署）</b>——改變用途、加建、容積率變動可能要補地價或申請契約修訂。<b>線二：城市規劃（規劃署／城規會）</b>——某些用途變更要申請許可。</p>
-<h4>04 ｜ 改完要開業：以食肆牌照為例的發牌鏈路</h4>
-<p>圖則批了、工程完工，不等于可以開門做生意。食肆還要過食物環境衞生署的牌照鏈路，消防、排水、通風各有要求。</p>
-<h4>05 ｜ 大型商業 A&A 五個高頻踩坑點</h4>
-<p>典型包括：混淆「入則」與「同意動工」、忽略地契／公契限制、施工中途改方案沒再入則、完工文件（BA14／入伙紙）搞錯、以爲「小型工程」就不用走法定程序。</p>
-<h4>06 ｜ A&A 的本質</h4>
-<p>是在「舊瓶子」裏裝「新酒」——既有建築物的結構、消防、逃生、地契條款都是舊的，新的使用需求要塞進去，靠的就是法定程序把風險釐清。業主側要倒排時間線，把入則、會審、動工、完工每個節點當里程碑管。</p></div><div class="nb-src">來源：公眾號「史蒂夫HKSZ」· 葉工｜2026-11-15｜原文筆記摘錄</div></div>
-      <div class="note-meta"><span>2026-11-15</span><span>約 9 分鐘</span></div>
+<h4>04 ｜ 招聘要求的背面，係一張能力清單</h4>
+<ul>
+<li><b>BIM</b>：大型基建和政府工程早就不是加分項而是標配，投標文件沒有 BIM 交付計劃，連門都進不去</li>
+<li><b>MiC</b>：組裝合成建築法，政府大力推，北部都會區專門規劃了先進建造業園區——早進場的人有先手</li>
+<li><b>NEC 合約</b>：NEC4 是不少政府工程和公營機構項目在用的合約範本，強調早期預警、合作協商和項目經理角色</li>
+<li><b>結構設計軟件同建模工具</b>：光會看圖紙、跑現場早就不夠了</li>
+</ul></div><div class="nb-src">來源：公眾號「史蒂夫HKSZ」· 葉工｜2026-10-14｜原文筆記摘錄</div></div>
+      <div class="note-meta"><span>2026-10-14</span><span>約 6 分鐘</span></div>
     </article>
-    <article class="note-card" data-cat="news">
+    </div>
+  </details>
+  <details class="note-folder" data-cat="news">
+    <summary>📰 工程時訊 <span class="nf-count">3 篇</span><span class="nf-hint">點開睇 ↘</span></summary>
+    <div class="nf-body">
+      <article class="note-card" data-cat="news">
       <span class="note-tag t-news">工程時訊</span>
       <h3>香港首個五年規劃出爐：未來工程怎麼幹，特首劃重點</h3>
       <p class="note-desc">五年規劃同施政報告相輔相成——一個長遠總體，一個具體實施。對接國家「十五五」、北都練兵場、工程融資同大學城，葉工用工程視角拆給你睇。</p>
@@ -1292,7 +1324,7 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
 <p><b>葉工碎碎念</b>：藍圖擺喺枱面，像圖紙上嘅紅線一样清晰。不管外界風雲變幻，技術過硬、懂規矩、會溝通，你就係香港最不可或缺嘅「核心鋼筋」。</p><div class="nb-src">來源：公眾號「史蒂夫HKSZ」· 葉工｜2026-09-07｜原文筆記摘錄</div></div></div>
       <div class="note-meta"><span>2026-09-07</span><span>約 6 分鐘</span></div>
     </article>
-    <article class="note-card" data-cat="news">
+      <article class="note-card" data-cat="news">
       <span class="note-tag t-news">工程時訊</span>
       <h3>《2026 年施政報告》深度解讀：未來五年香港工程大計</h3>
       <p class="note-desc">近十萬字報告，以工程切入：北都三個大學城、九個發展區全數開動、AI 城市大腦、MiC/MiMEP、1200 億年度工程開支——未來五年嘅工程圖紙。</p>
@@ -1326,7 +1358,7 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
 </ul><div class="nb-src">來源：公眾號「史蒂夫HKSZ」· 葉工｜2026-09-16｜原文筆記摘錄</div></div></div>
       <div class="note-meta"><span>2026-09-16</span><span>約 8 分鐘</span></div>
     </article>
-    <article class="note-card" data-cat="news">
+      <article class="note-card" data-cat="news">
       <span class="note-tag t-news">工程時訊</span>
       <h3>未來十五年香港基建怎麼幹？900 公頃熟地、九個發展區全數開動</h3>
       <p class="note-desc">發展局記者會加施政報告第五章逐條對照：錢從哪來、路怎麼修、地怎麼拿。北環線支線已授權、青龍大橋 2033、收地八個月時間線——工程人對照時間表搵位置。</p>
@@ -1357,6 +1389,9 @@ body[data-view="public"][data-embed="1"] #pubBackBar{display:flex}
 <p><b>一句話收拢</b>：政府主導土地供應，北都扛起七成增量，鐵路公路先行，產業同大學城順住交通骨架鋪開。對工程人嚟講，對住張時間表搵自己位置——你所在片區係頭四年嘅新田、洪水橋、古洞北，定係後段接力嘅牛潭尾、流浮山、打鼓岭？</p><div class="nb-src">來源：公眾號「史蒂夫HKSZ」· 葉工｜2026-09-23｜原文筆記摘錄</div></div></div>
       <div class="note-meta"><span>2026-09-23</span><span>約 10 分鐘</span></div>
     </article>
+    </div>
+  </details>
+
   </div>
 
   <!-- v3.57 公眾號 9 大合集導航：按主題分組，直達微信原合集 -->
@@ -3756,6 +3791,12 @@ window.noteToggle = function(btn){
 window.noteFilter = function(cat){
   var bar = document.getElementById('noteFilters'); if(!bar) return;
   bar.querySelectorAll('.cat-tab').forEach(function(b){ b.classList.toggle('on', b.dataset.note === cat); });
+  var folders = document.querySelectorAll('#noteGrid .note-folder');
+  folders.forEach(function(f){
+    var show = (cat === 'all' || f.dataset.cat === cat);
+    f.style.display = show ? '' : 'none';
+    f.open = (show && cat !== 'all');
+  });
   var cards = document.querySelectorAll('#noteGrid .note-card');
   cards.forEach(function(c){ c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none'; });
 };
